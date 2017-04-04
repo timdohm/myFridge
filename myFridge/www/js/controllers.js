@@ -1,28 +1,50 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope) {
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+  // var time = new Date().getTime();
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
+  var today = new Date()
+  var curHr = today.getHours()
+
+  $scope.curHr = curHr;
+
+  if (curHr < 12) {
+    $scope.curHr = 'breakfast!';
+  } else if (curHr < 18) {
+    $scope.curHr = 'lunch!';
+  } else {
+    $scope.curHr = 'dinner!';
+  }
+
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('ChatsCtrl', function($scope, Chats) {
+
 })
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
-  };
+  }
+
+
+  // FB.login(function(response) {
+  //   if (response.authResponse) {
+  //     console.log('Welcome!  Fetching your information.... ');
+  //     FB.api('/me', function(response) {
+  //       console.log('Good to see you, ' + response.name + '.');
+  //     });
+  //   } else {
+  //     console.log('User cancelled login or did not fully authorize.');
+  //   }
+  // });
+
+  // FB.login(function(response) {
+  //   // handle the response
+  // }, {
+  //   scope: 'publish_actions',
+  //   return_scopes: true
+  // });
+
 });

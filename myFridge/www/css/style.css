@@ -1,1 +1,47 @@
 /* Empty. Add your own CSS if you like */
+
+img {
+  width:100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-filter: blur(2px) contrast(75%);
+  -moz-filter: blur(2px) contrast(75%);
+  border: 5px solid #A9A9A9;
+}
+
+h2 {
+  font-family: 'Indie Flower', cursive;
+  color:#FFA07A;
+  font-size:40px;
+  font-weight:bold;
+  position: absolute;
+  text-align: center;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  min-width: 750px;
+}
+
+/*#text {*/
+  /*z-index:100;*/
+  /*position:absolute;*/
+  /*line-height: 45px;*/
+  /*margin: 40px 0px 0px 625px;*/
+/*}*/
+
+ion-view {
+  color:#FFA07A;
+  font-family: 'Indie Flower', cursive;
+}
+
+
+@media (max-width: 500px) {
+  h2 {
+    position: absolute;
+    font-size: 20px;
+    text-align: center;
+    margin: -75px 100px 0 -120px;
+    line-height: 30px;
+  }
+}
