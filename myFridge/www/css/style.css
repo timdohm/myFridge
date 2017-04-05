@@ -1,40 +1,64 @@
-/* Empty. Add your own CSS if you like */
-
-img {
+/*Home image*/
+.mySlides {
   width:100%;
   position: absolute;
-  top: 0;
+  top: 120%;
   left: 0;
-  -webkit-filter: blur(2px) contrast(75%);
-  -moz-filter: blur(2px) contrast(75%);
-  border: 5px solid #A9A9A9;
+  padding: 1px;
+  border: 5px solid whitesmoke;
+  /*-webkit-filter: blur(0.2px) contrast(90%);*/
+  /*-moz-filter: blur(0.2px) contrast(90%);*/
+  /*border: 5px solid #A9A9A9;*/
 }
 
-h2 {
-  font-family: 'Indie Flower', cursive;
-  color:#FFA07A;
-  font-size:40px;
-  font-weight:bold;
-  position: absolute;
+h3 {
   text-align: center;
-  top: 100px;
-  left: 0;
-  width: 100%;
-  min-width: 750px;
+  color:steelblue;
+  font-family: 'Indie Flower', cursive;
+  padding: 7px;
 }
 
-/*#text {*/
-  /*z-index:100;*/
-  /*position:absolute;*/
-  /*line-height: 45px;*/
-  /*margin: 40px 0px 0px 625px;*/
-/*}*/
+h4 {
+  text-align: center;
+  color:steelblue;
+  font-family: 'Indie Flower', cursive;
+  padding: 5px;
+}
 
-ion-view {
+br {
+  padding: 5px;
+}
+
+tabs-chats {
+  background-color: darkgrey;
+}
+
+ion-content {
+  background-color: #F0F8FF;
+  box-shadow: inset 0px 0px 40px 40px #F0F8FF;
+}
+
+.title {
+  background-color: #F0F8FF;
   color:#FFA07A;
   font-family: 'Indie Flower', cursive;
+  font-size: 100px;
 }
 
+
+/*h2 {*/
+  /*font-family: 'Indie Flower', cursive;*/
+  /*color:#FFA07A;*/
+  /*font-size:30px;*/
+  /*font-weight:bold;*/
+  /*position: absolute;*/
+  /*text-align: center;*/
+  /*top: 100px;*/
+  /*left: 0;*/
+  /*width: 100%;*/
+  /*min-width: 750px;*/
+  /*margin: 10px 0 0 70px;*/
+/*}*/
 
 @media (max-width: 500px) {
   h2 {

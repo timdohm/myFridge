@@ -2,10 +2,9 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {
 
-
 })
 
-.controller('ChatsCtrl', function($scope, Chats) {
+.controller('ChatsCtrl', function($scope) {
 
   var today = new Date()
   var curHr = today.getHours()
@@ -20,30 +19,25 @@ angular.module('starter.controllers', [])
     $scope.curHr = 'dinner!';
   }
 
+  var myIndex = 0;
+  carousel();
+
+  function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 5000); // Change image every 2 seconds
+  }
+
 })
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   }
-
-
-  // FB.login(function(response) {
-  //   if (response.authResponse) {
-  //     console.log('Welcome!  Fetching your information.... ');
-  //     FB.api('/me', function(response) {
-  //       console.log('Good to see you, ' + response.name + '.');
-  //     });
-  //   } else {
-  //     console.log('User cancelled login or did not fully authorize.');
-  //   }
-  // });
-
-  // FB.login(function(response) {
-  //   // handle the response
-  // }, {
-  //   scope: 'publish_actions',
-  //   return_scopes: true
-  // });
-
 });
