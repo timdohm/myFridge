@@ -44,6 +44,22 @@
     <!-- load angular-moment -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
 
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAnlkqCJ3IDPTS2D-heN1jdfYawAVoxMs0",
+        authDomain: "myfridge-87b07.firebaseapp.com",
+        databaseURL: "https://myfridge-87b07.firebaseio.com",
+        projectId: "myfridge-87b07",
+        storageBucket: "myfridge-87b07.appspot.com",
+        messagingSenderId: "829045587487"
+      };
+      firebase.initializeApp(config);
+    </script>
+
   </head>
   <body ng-app="myFridge">
     <!--

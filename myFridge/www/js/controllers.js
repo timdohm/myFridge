@@ -2,7 +2,10 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {
 
-  // var time = new Date().getTime();
+
+})
+
+.controller('ChatsCtrl', function($scope, Chats) {
 
   var today = new Date()
   var curHr = today.getHours()
@@ -16,10 +19,6 @@ angular.module('starter.controllers', [])
   } else {
     $scope.curHr = 'dinner!';
   }
-
-})
-
-.controller('ChatsCtrl', function($scope, Chats) {
 
 })
 
