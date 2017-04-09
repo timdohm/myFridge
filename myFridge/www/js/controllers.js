@@ -1,11 +1,70 @@
 angular.module('starter.controllers', [])
 
+  .controller('LoginCtrl', function ($scope, $ionicModal, $timeout, ngFB, $state, $rootScope) {
+
+
+
+    $scope.fbLogin = function () {
+      var runningInCordova = false;
+      document.addEventListener("deviceready", function () {
+        var runningInCordova = true;
+      }, false);
+      ngFB.login({scope: 'email,publish_actions'}).then(
+        function (response) {
+          if (response.status === 'connected') {
+            localStorage.setItem('login', 'true');
+            localStorage.setItem('fbAccessToken', response.authResponse.accessToken);
+
+            ngFB.api({
+              path: '/me',
+              params: {fields: 'id,name'}
+            }).then(
+              function (user) {
+                localStorage.setItem('user', user.name);
+                $rootScope.userFBId = user.id;
+
+                $state.go('tab.home');
+
+
+          },
+
+              function (error) {
+                alert('Facebook error: ' + error.error_description);
+              });
+
+
+            console.log('Facebook login succeeded');
+            if (runningInCordova) {
+              $scope.closeLogin();
+            }
+          } else {
+            alert('Facebook login failed');
+          }
+        });
+    };
+  })
+
 .controller('DashCtrl', function($scope) {
 
 })
 
-.controller('ChatsCtrl', function($scope) {
+.controller('HomeCtrl', function($scope, $state, $rootScope, $ionicHistory) {
 
+  $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+
+    if(localStorage.getItem('login') == null){
+      $state.go('login', {});
+    }
+    $ionicHistory.clearCache();
+    $ionicHistory.clearHistory();
+    $scope.name = localStorage.getItem('user');
+  });
+  /*
+  if(localStorage.getItem('user') == null) {
+    location.reload();
+  }*/
+  //console.log(localStorage.getItem('user'));
+  $scope.name = localStorage.getItem('user');
   var today = new Date()
   var curHr = today.getHours()
 
