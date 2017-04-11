@@ -95,8 +95,35 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('AccountCtrl', function($scope, ngFB, $state, $ionicHistory, $ionicPopup) {
   $scope.settings = {
     enableFriends: true
-  }
+  };
+
+
+  $scope.goLogout = function() {
+
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Are You Sure to Quit?'
+    });
+    confirmPopup.then(function(res) {
+      if(res) {
+        ngFB.logout().then(
+          function (response) {
+            console.log('Facebook logout succeeded');
+            $scope.ignoreDirty = true; //Prevent loop
+            localStorage.clear();
+            $ionicHistory.clearCache();
+            $ionicHistory.clearHistory();
+            $state.go('login');
+          });
+      } else {
+        console.log('You stay');
+      }
+    });
+    //$ionicViewSwitcher.nextDirection('forward');
+  };
+
+
+
 });

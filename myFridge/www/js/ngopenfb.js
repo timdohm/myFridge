@@ -28,9 +28,9 @@ angular.module('ngOpenFB', [])
 
         function logout() {
             var deferred = $q.defer();
-            $window.openFB.logout(function() {
+           // $window.openFB.logout(function() {
                 deferred.resolve();
-            });
+           // });
             return deferred.promise;
         }
 
