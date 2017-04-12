@@ -65,6 +65,17 @@ myFridge.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/login.html',
       controller: 'LoginCtrl'
     })
+
+    .state('tab.recipes', {
+      url: '/recipes',
+      views: {
+        'tab-recipes': {
+          templateUrl: 'templates/tab-recipes.html',
+          controller: 'RecipesCtrl'
+        }
+      }
+    })
+
   .state('tab.account', {
     url: '/account',
     views: {
