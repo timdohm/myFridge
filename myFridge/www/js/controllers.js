@@ -2,8 +2,6 @@ angular.module('starter.controllers', [])
 
   .controller('LoginCtrl', function ($scope, $ionicModal, $timeout, ngFB, $state, $rootScope) {
 
-
-
     $scope.fbLogin = function () {
       var runningInCordova = false;
       document.addEventListener("deviceready", function () {
@@ -25,13 +23,10 @@ angular.module('starter.controllers', [])
 
                 $state.go('tab.home');
 
-
           },
-
               function (error) {
                 alert('Facebook error: ' + error.error_description);
               });
-
 
             console.log('Facebook login succeeded');
             if (runningInCordova) {
@@ -95,6 +90,14 @@ angular.module('starter.controllers', [])
 
 })
 
+<<<<<<< HEAD
+.controller('RecipesCtrl', function($scope) {
+
+})
+
+
+=======
+>>>>>>> e52b0103ef9b92c8b17560e78c83471ab6e0bc20
 .controller('AccountCtrl', function($scope, ngFB, $state, $ionicHistory, $ionicPopup) {
   $scope.settings = {
     enableFriends: true
@@ -127,3 +130,5 @@ angular.module('starter.controllers', [])
 
 
 });
+
+
