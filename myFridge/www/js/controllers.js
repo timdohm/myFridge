@@ -90,11 +90,14 @@ angular.module('starter.controllers', [])
 
 })
 
+<<<<<<< HEAD
 .controller('RecipesCtrl', function($scope) {
 
 })
 
 
+=======
+>>>>>>> e52b0103ef9b92c8b17560e78c83471ab6e0bc20
 .controller('AccountCtrl', function($scope, ngFB, $state, $ionicHistory, $ionicPopup) {
   $scope.settings = {
     enableFriends: true
