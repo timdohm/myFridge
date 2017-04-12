@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var myFridge = angular.module('myFridge', ['ionic', 'starter.controllers', 'starter.services', 'ngOpenFB'])
+var myFridge = angular.module('myFridge', ['ionic', 'starter.controllers', 'starter.services', 'ngOpenFB', 'SpoonacularAPILib'])
 
 .run(function($ionicPlatform, ngFB) {
   ngFB.init({appId: '1862623484011160'});
