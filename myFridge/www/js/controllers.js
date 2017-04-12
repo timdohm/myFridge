@@ -2,8 +2,6 @@ angular.module('starter.controllers', [])
 
   .controller('LoginCtrl', function ($scope, $ionicModal, $timeout, ngFB, $state, $rootScope) {
 
-
-
     $scope.fbLogin = function () {
       var runningInCordova = false;
       document.addEventListener("deviceready", function () {
@@ -25,13 +23,10 @@ angular.module('starter.controllers', [])
 
                 $state.go('tab.home');
 
-
           },
-
               function (error) {
                 alert('Facebook error: ' + error.error_description);
               });
-
 
             console.log('Facebook login succeeded');
             if (runningInCordova) {
