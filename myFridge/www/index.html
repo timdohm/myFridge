@@ -25,11 +25,45 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
+    <script src="https://www.gstatic.com/firebasejs/3.7.6/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAnlkqCJ3IDPTS2D-heN1jdfYawAVoxMs0",
+        authDomain: "myfridge-87b07.firebaseapp.com",
+        databaseURL: "https://myfridge-87b07.firebaseio.com",
+        projectId: "myfridge-87b07",
+        storageBucket: "myfridge-87b07.appspot.com",
+        messagingSenderId: "829045587487"
+      };
+      firebase.initializeApp(config);
+    </script>
+
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
+
+    <!-- Helper files -->
+    <script src="js/spoonacularapilib/Configuration.js"></script>
+    <script src="js/spoonacularapilib/APIHelper.js"></script>
+    <script src="js/spoonacularapilib/Http/Client/HttpContext.js"></script>
+    <script src="js/spoonacularapilib/Http/Client/RequestClient.js"></script>
+    <script src="js/spoonacularapilib/Http/Request/HttpRequest.js"></script>
+    <script src="js/spoonacularapilib/Http/Response/HttpResponse.js"></script>
+
+    <!-- API Controllers -->
+    <script src="js/spoonacularapilib/Controllers/APIController.js"></script>
+
+
+    <!-- Models -->
+    <script src="js/spoonacularapilib/Models/BaseModel.js"></script>
+    <script src="js/spoonacularapilib/Models/Productjson.js"></script>
+    <script src="js/spoonacularapilib/Models/Classifiedproduct.js"></script>
+    <script src="js/spoonacularapilib/Models/Productjsonarray.js"></script>
+    <script src="js/spoonacularapilib/Models/FindByIngredientsModel.js"></script>
+
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
@@ -44,21 +78,6 @@
     <!-- load angular-moment -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
 
-
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyAnlkqCJ3IDPTS2D-heN1jdfYawAVoxMs0",
-        authDomain: "myfridge-87b07.firebaseapp.com",
-        databaseURL: "https://myfridge-87b07.firebaseio.com",
-        projectId: "myfridge-87b07",
-        storageBucket: "myfridge-87b07.appspot.com",
-        messagingSenderId: "829045587487"
-      };
-      firebase.initializeApp(config);
-    </script>
 
     <!--Facebook login-->
     <script src="js/openfb.js"></script>
