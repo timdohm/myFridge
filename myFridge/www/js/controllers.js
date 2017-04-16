@@ -23,6 +23,9 @@ angular.module('starter.controllers', [])
                 localStorage.setItem('user', user.name);
                 $rootScope.userFBId = user.id;
 
+
+
+
                 $state.go('tab.home');
 
 
@@ -30,6 +33,7 @@ angular.module('starter.controllers', [])
 
               function (error) {
                 alert('Facebook error: ' + error.error_description);
+
               });
 
 
@@ -44,7 +48,10 @@ angular.module('starter.controllers', [])
     };
   })
 
-.controller('DashCtrl', function($scope) {
+.controller('DashCtrl', function($scope, $state, $rootScope, $ionicHistory, $ionicModal) {
+  $scope.fridge = {};
+
+
 
 })
 
@@ -95,11 +102,15 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('AccountCtrl', function($scope, ngFB, $state, $ionicHistory, $ionicPopup) {
+.controller('AccountCtrl', function($scope, ngFB, $state, $ionicHistory, $ionicPopup, $ionicModal) {
   $scope.settings = {
     enableFriends: true
   };
 
+  $scope.cleanFridge = function() {
+    //function for deleting fridge contents
+
+  }
 
   $scope.goLogout = function() {
 
