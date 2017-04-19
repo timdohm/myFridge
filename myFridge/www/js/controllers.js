@@ -39,7 +39,36 @@ angular.module('starter.controllers', [])
     };
   })
 
-.controller('DashCtrl', function($scope) {
+.controller('DashCtrl', function($scope, $ionicModal, $ionicLoading) {
+  $scope.itemInput = {
+    item: "",
+    expDate: ""
+  }
+  $scope.listOfGroceries = {}; // Create list of people dictionary variable on controller $scope
+
+  $scope.onSubmit = function () {
+
+    var groceryItem = {};
+
+    groceryItem.id = $scope.itemInput.item+$scope.itemInput.expDate;
+
+    groceryItem.item = $scope.itemInput.item;
+    groceryItem.expDate = $scope.itemInput.expDate;
+
+    $scope.listOfGroceries[groceryItem.id] = groceryItem;
+
+
+    $ionicLoading.show({ template: 'Item Added!', noBackdrop: true, duration: 1000 });
+  };
+
+  $scope.deleteItem = function(groceryItem) {
+
+    delete $scope.listOfGroceries[groceryItem.id];
+
+    $ionicLoading.show({ template: 'Item Deleted!', noBackdrop: true, duration: 1000 });
+  };
+
+
 
 })
 
@@ -90,19 +119,17 @@ angular.module('starter.controllers', [])
 
 })
 
-<<<<<<< HEAD
+
 .controller('RecipesCtrl', function($scope) {
 
 })
 
 
-=======
->>>>>>> e52b0103ef9b92c8b17560e78c83471ab6e0bc20
+
 .controller('AccountCtrl', function($scope, ngFB, $state, $ionicHistory, $ionicPopup) {
   $scope.settings = {
     enableFriends: true
   };
-
 
   $scope.goLogout = function() {
 
@@ -127,7 +154,9 @@ angular.module('starter.controllers', [])
     //$ionicViewSwitcher.nextDirection('forward');
   };
 
-
+  $scope.goHome = function() {
+    $state.go("tab.home");
+  }
 
 });
 

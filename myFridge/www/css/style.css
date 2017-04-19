@@ -80,14 +80,20 @@ form {
   width: 200px;
 }
 
-@media (max-width: 500px) {
-  h2 {
-    position: absolute;
-    font-size: 20px;
-    text-align: center;
-    margin: -75px 100px 0 -120px;
-    line-height: 30px;
-  }
+.button {
+  background-color: steelblue;
 }
 
+.button:active {
+  background-color: #ADD8E6;
+}
 
+/*@media (max-width: 500px) {*/
+  /*h2 {*/
+    /*position: absolute;*/
+    /*font-size: 20px;*/
+    /*text-align: center;*/
+    /*margin: -75px 100px 0 -120px;*/
+    /*line-height: 30px;*/
+  /*}*/
+/*}*/
