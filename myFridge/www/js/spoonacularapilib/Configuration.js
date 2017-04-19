@@ -15,7 +15,7 @@ angular.module('SpoonacularAPILib', [])
 
             //The Mashape application you want to use for this session.
             //TODO: Replace the xMashapeKey with an appropriate value
-            xMashapeKey : "TODO: Replace"
+            xMashapeKey : "a794ZJXQxgmsh1varkfYtBD0PdePp11447LjsnWdMMpHcRjoHJ"
 
         };
     }
