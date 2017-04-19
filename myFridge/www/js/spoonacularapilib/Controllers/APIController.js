@@ -23,11 +23,11 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/food/products/{id}";
-                    
+
                     // Process template parameters
                     _queryBuilder = APIHelper.appendUrlWithTemplateParameters(_queryBuilder, {
                         "id": id
@@ -35,7 +35,7 @@ angular.module('SpoonacularAPILib')
 
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -48,9 +48,9 @@ angular.module('SpoonacularAPILib')
                         queryUrl: _queryUrl,
                         headers: _headers,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -60,7 +60,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -75,11 +75,11 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/recipes/{id}/similar";
-                    
+
                     // Process template parameters
                     _queryBuilder = APIHelper.appendUrlWithTemplateParameters(_queryBuilder, {
                         "id": id
@@ -87,7 +87,7 @@ angular.module('SpoonacularAPILib')
 
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -100,9 +100,9 @@ angular.module('SpoonacularAPILib')
                         queryUrl: _queryUrl,
                         headers: _headers,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -112,7 +112,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -127,11 +127,11 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/food/ingredients/autocomplete";
-                    
+
                     // Process query parameters
                     _queryBuilder = APIHelper.appendUrlWithQueryParameters(_queryBuilder, {
                         "query": query
@@ -139,7 +139,7 @@ angular.module('SpoonacularAPILib')
 
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -152,9 +152,9 @@ angular.module('SpoonacularAPILib')
                         queryUrl: _queryUrl,
                         headers: _headers,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -164,7 +164,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -187,14 +187,14 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/recipes/visualizePriceEstimator";
-                    
+
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -222,9 +222,9 @@ angular.module('SpoonacularAPILib')
                         headers: _headers,
                         form: _form,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -234,7 +234,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -255,14 +255,14 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/recipes/visualizeNutrition";
-                    
+
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -289,9 +289,9 @@ angular.module('SpoonacularAPILib')
                         headers: _headers,
                         form: _form,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -301,7 +301,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -326,14 +326,14 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/recipes/visualizeIngredients";
-                    
+
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -362,9 +362,9 @@ angular.module('SpoonacularAPILib')
                         headers: _headers,
                         form: _form,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -374,7 +374,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -389,11 +389,11 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/recipes/{id}/summary";
-                    
+
                     // Process template parameters
                     _queryBuilder = APIHelper.appendUrlWithTemplateParameters(_queryBuilder, {
                         "id": id
@@ -401,7 +401,7 @@ angular.module('SpoonacularAPILib')
 
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -414,9 +414,9 @@ angular.module('SpoonacularAPILib')
                         queryUrl: _queryUrl,
                         headers: _headers,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -426,7 +426,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -447,11 +447,11 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/food/products/search";
-                    
+
                     // Process query parameters
                     _queryBuilder = APIHelper.appendUrlWithQueryParameters(_queryBuilder, {
                         "query": query,
@@ -461,10 +461,10 @@ angular.module('SpoonacularAPILib')
 
                     //append optional parameters to the query
                     _queryBuilder = APIHelper.appendUrlWithQueryParameters(_queryBuilder, queryParameters)
-                    
+
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -477,9 +477,9 @@ angular.module('SpoonacularAPILib')
                         queryUrl: _queryUrl,
                         headers: _headers,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -489,7 +489,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -504,11 +504,11 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/recipes/quickAnswer";
-                    
+
                     // Process query parameters
                     _queryBuilder = APIHelper.appendUrlWithQueryParameters(_queryBuilder, {
                         "q": q
@@ -516,7 +516,7 @@ angular.module('SpoonacularAPILib')
 
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -529,9 +529,9 @@ angular.module('SpoonacularAPILib')
                         queryUrl: _queryUrl,
                         headers: _headers,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -541,7 +541,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -556,11 +556,11 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/recipes/{id}/information";
-                    
+
                     // Process template parameters
                     _queryBuilder = APIHelper.appendUrlWithTemplateParameters(_queryBuilder, {
                         "id": id
@@ -568,7 +568,7 @@ angular.module('SpoonacularAPILib')
 
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -581,9 +581,9 @@ angular.module('SpoonacularAPILib')
                         queryUrl: _queryUrl,
                         headers: _headers,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -593,7 +593,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -610,14 +610,14 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/recipes/parseIngredients";
-                    
+
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -640,9 +640,9 @@ angular.module('SpoonacularAPILib')
                         headers: _headers,
                         form: _form,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -652,7 +652,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -669,14 +669,14 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/food/ingredients/map";
-                    
+
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -699,9 +699,9 @@ angular.module('SpoonacularAPILib')
                         headers: _headers,
                         form: _form,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -711,7 +711,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -730,11 +730,11 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/recipes/extract";
-                    
+
                     // Process query parameters
                     _queryBuilder = APIHelper.appendUrlWithQueryParameters(_queryBuilder, {
                         "url": url,
@@ -743,10 +743,10 @@ angular.module('SpoonacularAPILib')
 
                     //append optional parameters to the query
                     _queryBuilder = APIHelper.appendUrlWithQueryParameters(_queryBuilder, queryParameters)
-                    
+
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -759,9 +759,9 @@ angular.module('SpoonacularAPILib')
                         queryUrl: _queryUrl,
                         headers: _headers,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -771,7 +771,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -788,11 +788,11 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/recipes/mealplans/generate";
-                    
+
                     // Process query parameters
                     _queryBuilder = APIHelper.appendUrlWithQueryParameters(_queryBuilder, {
                         "targetCalories": targetCalories,
@@ -801,7 +801,7 @@ angular.module('SpoonacularAPILib')
 
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -814,9 +814,9 @@ angular.module('SpoonacularAPILib')
                         queryUrl: _queryUrl,
                         headers: _headers,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -826,7 +826,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -839,14 +839,14 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/food/products/classifyBatch";
-                    
+
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -864,9 +864,9 @@ angular.module('SpoonacularAPILib')
                         headers: _headers,
                         body: productJsonArray
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -876,7 +876,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -893,14 +893,14 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/recipes/cuisine";
-                    
+
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -923,9 +923,9 @@ angular.module('SpoonacularAPILib')
                         headers: _headers,
                         form: _form,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -935,7 +935,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -948,14 +948,14 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/food/products/classify";
-                    
+
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -973,9 +973,9 @@ angular.module('SpoonacularAPILib')
                         headers: _headers,
                         body: productJson
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -985,7 +985,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -1018,11 +1018,11 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/recipes/search";
-                    
+
                     // Process query parameters
                     _queryBuilder = APIHelper.appendUrlWithQueryParameters(_queryBuilder, {
                         "query": query,
@@ -1038,10 +1038,10 @@ angular.module('SpoonacularAPILib')
 
                     //append optional parameters to the query
                     _queryBuilder = APIHelper.appendUrlWithQueryParameters(_queryBuilder, queryParameters)
-                    
+
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -1054,9 +1054,9 @@ angular.module('SpoonacularAPILib')
                         queryUrl: _queryUrl,
                         headers: _headers,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -1066,7 +1066,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -1097,11 +1097,11 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/recipes/findByNutrients";
-                    
+
                     // Process query parameters
                     _queryBuilder = APIHelper.appendUrlWithQueryParameters(_queryBuilder, {
                         "maxcalories": (null != maxcalories) ? maxcalories : 1500,
@@ -1116,10 +1116,10 @@ angular.module('SpoonacularAPILib')
 
                     //append optional parameters to the query
                     _queryBuilder = APIHelper.appendUrlWithQueryParameters(_queryBuilder, queryParameters)
-                    
+
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -1132,9 +1132,9 @@ angular.module('SpoonacularAPILib')
                         queryUrl: _queryUrl,
                         headers: _headers,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -1144,7 +1144,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -1167,11 +1167,11 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/recipes/findByIngredients";
-                    
+
                     // Process query parameters
                     _queryBuilder = APIHelper.appendUrlWithQueryParameters(_queryBuilder, {
                         "ingredients": ingredients,
@@ -1182,10 +1182,10 @@ angular.module('SpoonacularAPILib')
 
                     //append optional parameters to the query
                     _queryBuilder = APIHelper.appendUrlWithQueryParameters(_queryBuilder, queryParameters)
-                    
+
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -1198,9 +1198,9 @@ angular.module('SpoonacularAPILib')
                         queryUrl: _queryUrl,
                         headers: _headers,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -1212,7 +1212,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 },
                 /**
@@ -1236,7 +1236,7 @@ angular.module('SpoonacularAPILib')
                 createRecipeCard: function (backgroundImage, image, ingredients, instructions, mask, readyInMinutes, servings, title, author, backgroundColor, fontColor, source, fieldParameters) {
                     // Assign default values
                     backgroundImage = backgroundImage || "background1";
-                    image = image || The image.;
+                    image = image;
                     ingredients = ingredients || "2 cups of green beans";
                     instructions = instructions || "cook the beans";
                     mask = mask || "ellipseMask";
@@ -1251,14 +1251,14 @@ angular.module('SpoonacularAPILib')
 
                     //Create promise to return
                     var _deffered = $q.defer();
-                    
+
                     //prepare query string for API call
                     var _baseUri = Configuration.BASEURI
                     var _queryBuilder = _baseUri + "/recipes/visualizeRecipe";
-                    
+
                     //validate and preprocess url
                     var _queryUrl = APIHelper.cleanUrl(_queryBuilder);
-                    
+
                     // prepare headers
                     var _headers = {
                         "accept": "application/json",
@@ -1294,9 +1294,9 @@ angular.module('SpoonacularAPILib')
                         headers: _headers,
                         form: _form,
                     };
-                    
+
                     var _response = HttpClient(_config);
-                    
+
                     //process response
                     _response.then(function (_result) {
                         var _strResult =_result.body;
@@ -1306,7 +1306,7 @@ angular.module('SpoonacularAPILib')
                         // Error handling for custom HTTP status codes
                         _deffered.reject(APIHelper.appendContext({errorMessage:"HTTP Response Not OK", errorCode: _result.code, errorResponse: _result.message}, _result.getContext()));
                     });
-                    
+
                     return _deffered.promise;
                 }
             }

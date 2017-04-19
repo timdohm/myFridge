@@ -96,7 +96,9 @@ angular.module('starter.controllers', [])
   }
 
 })
-.controller('RecipesCtrl', function($scope) {
+.controller('RecipesCtrl', function($scope, APIController, FindByIngredientsModel) {
+
+
 
 })
 
