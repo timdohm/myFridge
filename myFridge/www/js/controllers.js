@@ -21,9 +21,6 @@ angular.module('starter.controllers', [])
                 localStorage.setItem('user', user.name);
                 $rootScope.userFBId = user.id;
 
-
-
-
                 $state.go('tab.home');
 
           },
