@@ -40,12 +40,33 @@ angular.module('starter.controllers', [])
     };
   })
 
-.controller('DashCtrl', function($scope, $ionicModal, $ionicLoading) {
+.controller('DashCtrl', function($scope, $ionicModal, $ionicLoading, APIController) {
+  $scope.searchtext = "";
+
+
+
   $scope.itemInput = {
     item: "",
     expDate: ""
   }
   $scope.listOfGroceries = {}; // Create list of people dictionary variable on controller $scope
+
+  $scope.diffName = function() {
+
+    console.log($scope.searchtext);
+
+    var query = $scope.searchtext;
+    var result = APIController.getAutocompleteIngredientSearch(query);
+    //Function call returns a promise
+    result.then(function(success){
+      //success case
+      //getting context of response
+      console.log(success.getContext());
+    },function(err){
+      //failure case
+    });
+
+  };
 
   $scope.onSubmit = function () {
 
@@ -71,7 +92,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('HomeCtrl', function($scope, $state, $rootScope, $ionicHistory) {
+.controller('HomeCtrl', function($scope, $state, $rootScope, $ionicHistory, $firebaseAuth, firebase) {
 
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
 
@@ -81,6 +102,28 @@ angular.module('starter.controllers', [])
     $ionicHistory.clearCache();
     $ionicHistory.clearHistory();
     $scope.name = localStorage.getItem('user');
+
+    $scope.auth_token = localStorage.getItem('fbAccessToken');
+    var auth = $firebaseAuth();
+
+    if($scope.auth_token == null ) {
+      $state.go('login', {});
+    }
+    else {
+      var credential = firebase.auth.FacebookAuthProvider.credential(
+        // `event` come from the Facebook SDK's auth.authResponseChange() callback
+        $scope.auth_token
+      );
+
+      console.log(credential);
+      auth.$signInWithCredential(credential).then(function(firebaseUser) {
+        console.log("Signed in as:", firebaseUser.uid);
+      }).catch(function(error) {
+        console.error("Authentication failed:", error);
+      });
+    }
+
+
   });
   /*
   if(localStorage.getItem('user') == null) {

@@ -25,22 +25,37 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
-    <!--<script src="https://www.gstatic.com/firebasejs/3.7.6/firebase.js"></script>-->
-    <!--<script>-->
-      <!--// Initialize Firebase-->
-      <!--var config = {-->
-        <!--apiKey: "AIzaSyAnlkqCJ3IDPTS2D-heN1jdfYawAVoxMs0",-->
-        <!--authDomain: "myfridge-87b07.firebaseapp.com",-->
-        <!--databaseURL: "https://myfridge-87b07.firebaseio.com",-->
-        <!--projectId: "myfridge-87b07",-->
-        <!--storageBucket: "myfridge-87b07.appspot.com",-->
-        <!--messagingSenderId: "829045587487"-->
-      <!--};-->
-      <!--firebase.initializeApp(config);-->
-    <!--</script>-->
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase-database.js"></script>
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!--&lt;!&ndash; AngularJS &ndash;&gt;-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>-->
+
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAnlkqCJ3IDPTS2D-heN1jdfYawAVoxMs0",
+        authDomain: "myfridge-87b07.firebaseapp.com",
+        databaseURL: "https://myfridge-87b07.firebaseio.com",
+        projectId: "myfridge-87b07",
+        storageBucket: "myfridge-87b07.appspot.com",
+        messagingSenderId: "829045587487"
+      };
+      firebase.initializeApp(config);
+
+      var rootRef = firebase.database().ref();
+    </script>
+
+
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
