@@ -20,7 +20,7 @@ angular.module('starter.controllers', [])
               function (user) {
                 localStorage.setItem('user', user.name);
                 $rootScope.userFBId = user.id;
-
+                debugger
                 $state.go('tab.home');
 
           },
@@ -40,16 +40,16 @@ angular.module('starter.controllers', [])
     };
   })
 
-.controller('DashCtrl', function($scope, $ionicModal, $ionicLoading, APIController) {
+.controller('DashCtrl', function($scope, $ionicModal, $ionicLoading, APIController, firebase, $firebaseArray, $rootScope) {
   $scope.searchtext = "";
-
-
 
   $scope.itemInput = {
     item: "",
     expDate: ""
   }
-  $scope.listOfGroceries = {}; // Create list of people dictionary variable on controller $scope
+
+  var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
+  $scope.list = $firebaseArray(ref);
 
   $scope.diffName = function() {
 
@@ -77,15 +77,22 @@ angular.module('starter.controllers', [])
     groceryItem.item = $scope.itemInput.item;
     groceryItem.expDate = $scope.itemInput.expDate;
 
-    $scope.listOfGroceries[groceryItem.id] = groceryItem;
-
+    // $scope.listOfGroceries[groceryItem.id] = groceryItem;
+    $scope.list.$add({
+      item: groceryItem.item,
+      expDate: groceryItem.expDate,
+      uid: $rootScope.currentUser.uid
+    }).then(function(ref) {
+      var id = ref.key;
+      console.log("added record with id " + id);
+    });
 
     $ionicLoading.show({ template: 'Item Added!', noBackdrop: true, duration: 1000 });
   };
 
   $scope.deleteItem = function(groceryItem) {
 
-    delete $scope.listOfGroceries[groceryItem.id];
+    $scope.list.$remove($scope.list.indexOf(groceryItem))
 
     $ionicLoading.show({ template: 'Item Deleted!', noBackdrop: true, duration: 1000 });
   };
@@ -117,6 +124,7 @@ angular.module('starter.controllers', [])
 
       console.log(credential);
       auth.$signInWithCredential(credential).then(function(firebaseUser) {
+        $rootScope.currentUser = firebaseUser
         console.log("Signed in as:", firebaseUser.uid);
       }).catch(function(error) {
         console.error("Authentication failed:", error);

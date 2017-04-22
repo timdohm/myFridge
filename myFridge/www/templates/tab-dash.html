@@ -21,7 +21,8 @@
     <div class="bottom">
       <div style="float: left; width: 100%;">
         <label class="item item-input">
-          <input type="text" name="time" id="time-textarea" ng-model="itemInput.expDate" placeholder="Due Date" onclick="this.type='date'">
+          <input type="text" name="time" id="time-textarea" ng-model="itemInput.expDate"
+                 placeholder="Expiration Date" onclick="this.type='date'">
         </label>
       </div>
     </div>
@@ -30,7 +31,7 @@
     <button class="button button-full" ng-click="onSubmit()">Submit</button>
     <ul>
 
-      <li class="button button-full" ng-repeat="groceryItem in listOfGroceries" ng-click="deleteItem(groceryItem)">
+      <li class="button button-full" ng-repeat="groceryItem in list" ng-click="deleteItem(groceryItem)">
         Item: {{groceryItem.item}} <br> Expiration Date: {{groceryItem.expDate}}</li>
     </ul>
 
