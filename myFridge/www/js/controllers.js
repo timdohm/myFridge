@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
-  .controller('LoginCtrl', function ($scope, $ionicModal, $timeout, ngFB, $state, $rootScope) {
-
+  .controller('LoginCtrl', function ($scope, $ionicModal, $timeout, ngFB, $state, $rootScope, $stateParams) {
+    console.log($stateParams)
     $scope.fbLogin = function () {
       var runningInCordova = false;
       document.addEventListener("deviceready", function () {
@@ -20,7 +20,13 @@ angular.module('starter.controllers', [])
               function (user) {
                 localStorage.setItem('user', user.name);
                 $rootScope.userFBId = user.id;
-                debugger
+
+                var completionHandler = $stateParams.completion
+                if (completionHandler) {
+                  console.log('completion handler called')
+                  completionHandler()
+                }
+
                 $state.go('tab.home');
 
           },
@@ -41,15 +47,18 @@ angular.module('starter.controllers', [])
   })
 
 .controller('DashCtrl', function($scope, $ionicModal, $ionicLoading, APIController, firebase, $firebaseArray, $rootScope) {
+
+  $rootScope.runWhenLoggedIn(function() {
+    var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
+    $scope.list = $firebaseArray(ref);
+  })
+
   $scope.searchtext = "";
 
   $scope.itemInput = {
     item: "",
     expDate: ""
   }
-
-  var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
-  $scope.list = $firebaseArray(ref);
 
   $scope.diffName = function() {
 
@@ -105,36 +114,8 @@ angular.module('starter.controllers', [])
 .controller('HomeCtrl', function($scope, $state, $rootScope, $ionicHistory, $firebaseAuth, firebase) {
 
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
-
-    if(localStorage.getItem('login') == null){
-      $state.go('login', {});
-    }
     $ionicHistory.clearCache();
     $ionicHistory.clearHistory();
-    $scope.name = localStorage.getItem('user');
-
-    $scope.auth_token = localStorage.getItem('fbAccessToken');
-    var auth = $firebaseAuth();
-
-    if($scope.auth_token == null ) {
-      $state.go('login', {});
-    }
-    else {
-      var credential = firebase.auth.FacebookAuthProvider.credential(
-        // `event` come from the Facebook SDK's auth.authResponseChange() callback
-        $scope.auth_token
-      );
-
-      console.log(credential);
-      auth.$signInWithCredential(credential).then(function(firebaseUser) {
-        $rootScope.currentUser = firebaseUser
-        console.log("Signed in as:", firebaseUser.uid);
-      }).catch(function(error) {
-        console.error("Authentication failed:", error);
-      });
-    }
-
-
   });
   /*
   if(localStorage.getItem('user') == null) {
@@ -173,11 +154,16 @@ angular.module('starter.controllers', [])
 })
 
 .controller('RecipesCtrl', function($scope, APIController, FindByIngredientsModel, $state, $stateParams, $ionicViewSwitcher) {
+  $rootScope.runWhenLoggedIn(function() {
+    var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
+    $scope.list = $firebaseArray(ref);
+  });
 
   $scope.goRecipe = function(recipe) {
     $ionicViewSwitcher.nextDirection('forward');
     $state.go('recipeDisp', {recipe: recipe});
   };
+
 })
 
 .controller('RecipeDispCtrl', function($scope, $state, $stateParams, $ionicModal, $ionicHistory, APIController, FindByIngredientsModel){

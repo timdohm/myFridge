@@ -24,6 +24,82 @@ var myFridge = angular.module('myFridge', ['ionic', 'starter.controllers', 'star
   });
 })
 
+myFridge.run(function($rootScope, $ionicHistory, $state, firebase, $firebaseAuth, $ionicPlatform) {
+
+  var signIn = function() {
+    var name = localStorage.getItem('user');
+    var auth_token = localStorage.getItem('fbAccessToken');
+    var auth = $firebaseAuth();
+
+    console.log(auth_token)
+
+    if(auth_token == null ) {
+      console.log("going to state.go without completion")
+      $state.go('login', {
+
+      });
+    }
+    else {
+      var credential = firebase.auth.FacebookAuthProvider.credential(
+        // `event` come from the Facebook SDK's auth.authResponseChange() callback
+        auth_token
+      );
+      $rootScope.startLogin()
+
+      console.log(credential);
+      auth.$signInWithCredential(credential).then(function(firebaseUser) {
+        $rootScope.currentUser = firebaseUser
+        $rootScope.loginFinished()
+        console.log("Signed in as:", firebaseUser.uid);
+      }).catch(function(error) {
+        console.error("Authentication failed:", error);
+        $rootScope.loginFailed()
+      });
+    }
+  }
+
+  $rootScope.loginCompletionHandlers = []
+
+  $rootScope.startLogin = function() {
+    $rootScope.waitingForLogin = true
+  }
+
+  $rootScope.loginFinished = function() {
+    $rootScope.waitingForLogin = false
+    for (var i=0; i<$rootScope.loginCompletionHandlers.length; i++) {
+      $rootScope.loginCompletionHandlers[i]()
+    }
+    $rootScope.loginCompletionHandlers = []
+  }
+
+  $rootScope.loginFailed = function() {
+    $rootScope.waitingForLogin = false
+    $rootScope.loginCompletionHandlers = []
+  }
+
+  $rootScope.runWhenLoggedIn = function(fn) {
+    if ($rootScope.waitingForLogin) {
+      $rootScope.loginCompletionHandlers.push(fn)
+    } else {
+      fn()
+    }
+  }
+
+  $ionicPlatform.ready(function() {
+
+    if(localStorage.getItem('login') == null){
+      var params = {
+        completion: signIn
+      }
+      console.log(params)
+      $state.go('login', params);
+    } else {
+      signIn()
+    }
+
+  })
+})
+
 myFridge.config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -63,7 +139,11 @@ myFridge.config(function($stateProvider, $urlRouterProvider) {
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
-      controller: 'LoginCtrl'
+      controller: 'LoginCtrl',
+      params: {
+        completion: null,
+        a: 0
+      }
     })
 
     .state('tab.recipes', {

@@ -45,7 +45,6 @@ ion-content {
   font-size: 100px;
 }
 
-
 form {
   /*margin: 0 43.5%;*/
   padding: 20px;
@@ -53,7 +52,6 @@ form {
   height: auto;
   /*overflow: hidden;*/
   margin: auto;
-
 }
 
 #search input[type="text"] {
