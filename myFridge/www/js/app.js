@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var myFridge = angular.module('myFridge', ['ionic', 'starter.controllers', 'starter.services', 'ngOpenFB', 'SpoonacularAPILib', 'firebase'])
+var myFridge = angular.module('myFridge', ['ionic', 'starter.controllers', 'starter.services', 'ngOpenFB', 'SpoonacularAPILib', 'firebase', 'ngOrderObjectBy'])
 
 .run(function($ionicPlatform, ngFB) {
   ngFB.init({appId: '1862623484011160'});
@@ -158,7 +158,7 @@ myFridge.config(function($stateProvider, $urlRouterProvider) {
     .state('recipeDisp', {
       url:'/recipeDisp',
       params: {
-        recipe: 'Recipes'
+        recipe: 'recipe'
       },
       cache: false,
       templateUrl: 'templates/recipeDisp.html',

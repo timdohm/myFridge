@@ -60,6 +60,30 @@ angular.module('starter.controllers', [])
     expDate: ""
   }
 
+  if($rootScope.sorting != null)
+    $scope.sorting = $rootScope.sorting;
+  else
+    $scope.sorting = "";
+
+  $scope.doSorting = function() {
+    var elem_type = document.getElementById('sorting-select');
+    var sort_type = elem_type.options[elem_type.selectedIndex].value;
+
+    //console.log(sort_type);
+
+    if (sort_type == "Exp Date") {
+      $scope.sorting = "expDate";
+    }
+    else if (sort_type == "Ingredient Name") {
+      $scope.sorting = "item";
+      //console.log("here");
+    }
+    else {
+      $scope.sorting = "";
+    }
+    $rootScope.sorting = $scope.sorting;
+  };
+
   $scope.diffName = function() {
 
     console.log($scope.searchtext);

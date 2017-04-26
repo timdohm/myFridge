@@ -3,6 +3,18 @@
 <ion-view id="title" view-title="myFridge">
   <ion-content class="padding">
 
+    <div class="bottom">
+      <div style="float:top; width: 175px;" >
+        <label class="item item-input">
+          <!--set height absolutely as 36px to match with other input textbox, may cause problem-->
+          <!--and the text color may need further change-->
+          <select id="sorting-select" class="item item-input" ng-model="DashCtrl" ng-change="doSorting()" style="height:36px; border: 0px;">
+            <option disabled selected value="">Sort By</option>
+            <option>Exp Date</option><option>Ingredient Name</option>
+          </select>
+        </label>
+      </div>
+    </div>
 
     <form method="get" action="/search" id="search">
       <input name="q" type="text" size="40" placeholder="Search..." ng-change="diffName()"
@@ -31,7 +43,7 @@
     <button class="button button-full" ng-click="onSubmit()">Submit</button>
     <ul>
 
-      <li class="button button-full" ng-repeat="groceryItem in list" ng-click="deleteItem(groceryItem)">
+      <li class="button button-full" ng-repeat="groceryItem in list| orderObjectBy: sorting" ng-click="deleteItem(groceryItem)">
         Item: {{groceryItem.item}} <br> Expiration Date: {{groceryItem.expDate}}</li>
     </ul>
 
