@@ -86,6 +86,7 @@ angular.module('starter.controllers', [])
     $rootScope.sorting = $scope.sorting;
   };
 
+  $scope.resultArr = null;
   $scope.diffName = function(query) {
 
 
@@ -96,8 +97,9 @@ angular.module('starter.controllers', [])
     result.then(function(success){
       //success case
       //getting context of response
-      console.log(success.getContext());
-      var result = success.getContext();
+      //console.log(success.getContext());
+      $scope.resultArr = success.body;
+      console.log($scope.resultArr);
     },function(err){
       //failure case
     });
