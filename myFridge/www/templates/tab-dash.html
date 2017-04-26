@@ -17,7 +17,7 @@
     </div>
 
     <form method="get" action="/search" id="search">
-      <input name="q" type="text" size="40" placeholder="Search..." ng-change="diffName()"
+      <input name="q" type="text" size="40" placeholder="Search..." ng-change="diffName($parent.searchtext)"
              ng-model="$parent.searchtext" ng-controller="DashCtrl" />
     </form>
 

@@ -46,7 +46,7 @@ angular.module('starter.controllers', [])
     };
   })
 
-.controller('DashCtrl', function($scope, $ionicModal, $ionicLoading, APIController, firebase, $firebaseArray, $rootScope) {
+.controller('DashCtrl', function($scope, $ionicModal, $ionicLoading, APIController, firebase, $firebaseArray, $rootScope, $http) {
 
   $rootScope.runWhenLoggedIn(function() {
     var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
@@ -86,17 +86,18 @@ angular.module('starter.controllers', [])
     $rootScope.sorting = $scope.sorting;
   };
 
-  $scope.diffName = function() {
+  $scope.diffName = function(query) {
 
-    console.log($scope.searchtext);
 
-    var query = $scope.searchtext;
+    console.log(query);
+
     var result = APIController.getAutocompleteIngredientSearch(query);
     //Function call returns a promise
     result.then(function(success){
       //success case
       //getting context of response
       console.log(success.getContext());
+      var result = success.getContext();
     },function(err){
       //failure case
     });
