@@ -88,11 +88,14 @@ angular.module('starter.controllers', [])
     });
 
     $ionicLoading.show({ template: 'Item Added!', noBackdrop: true, duration: 1000 });
+
+    $scope.itemInput.item = null;
+    $scope.itemInput.expDate = null;
   };
 
   $scope.deleteItem = function(groceryItem) {
 
-    $scope.list.$remove($scope.list.indexOf(groceryItem))
+    $scope.list.$remove($scope.list.indexOf(groceryItem));
 
     $ionicLoading.show({ template: 'Item Deleted!', noBackdrop: true, duration: 1000 });
   };
@@ -169,11 +172,29 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('RecipesCtrl', function($scope, APIController, FindByIngredientsModel) {
+.controller('RecipesCtrl', function($scope, APIController, FindByIngredientsModel, $state, $stateParams, $ionicViewSwitcher) {
 
+  $scope.goRecipe = function(recipe) {
+    $ionicViewSwitcher.nextDirection('forward');
+    $state.go('recipeDisp', {recipe: recipe});
+  };
 })
 
+.controller('RecipeDispCtrl', function($scope, $state, $stateParams, $ionicModal, $ionicHistory, APIController, FindByIngredientsModel){
+  $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    viewData.enableBack = true;
+  });
+  $scope.recipe = APIController.getRecipeInformation($stateParams.recipe);
 
+  result.then(function(success){
+    //success case
+    //getting context of response
+    console.log(success.getContext());
+  },function(err){
+    //failure case
+  });
+
+})
 .controller('AccountCtrl', function($scope, ngFB, $state, $ionicHistory, $ionicPopup, $ionicModal) {
   $scope.settings = {
     enableFriends: true

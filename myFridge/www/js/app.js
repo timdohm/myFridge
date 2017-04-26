@@ -75,6 +75,16 @@ myFridge.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
+    .state('recipeDisp', {
+      url:'/recipeDisp',
+      params: {
+        recipe: 'Recipes'
+      },
+      cache: false,
+      templateUrl: 'templates/recipeDisp.html',
+      controller: 'RecipeDispCtrl'
+
+    })
 
   .state('tab.account', {
     url: '/account',
