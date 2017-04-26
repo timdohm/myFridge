@@ -53,6 +53,8 @@ angular.module('starter.controllers', [])
     $scope.list = $firebaseArray(ref);
   })
 
+
+
   $scope.searchtext = "";
 
   $scope.itemInput = {
@@ -177,7 +179,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('RecipesCtrl', function($scope, APIController, FindByIngredientsModel, $state, $stateParams, $ionicViewSwitcher) {
+.controller('RecipesCtrl', function($scope, APIController, FindByIngredientsModel, $state, $stateParams, $ionicViewSwitcher, $rootScope, firebase, $firebaseArray) {
   $rootScope.runWhenLoggedIn(function() {
     var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
     $scope.list = $firebaseArray(ref);
