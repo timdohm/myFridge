@@ -54,7 +54,6 @@ angular.module('starter.controllers', [])
   })
 
 
-
   $scope.searchtext = "";
 
   $scope.itemInput = {
@@ -208,7 +207,12 @@ angular.module('starter.controllers', [])
   });
 
 })
-.controller('AccountCtrl', function($scope, ngFB, $state, $ionicHistory, $ionicPopup, $ionicModal) {
+.controller('AccountCtrl', function($scope, $rootScope, firebase, $firebaseArray, $ionicLoading, ngFB, $state, $ionicHistory, $ionicPopup, $ionicModal) {
+  $rootScope.runWhenLoggedIn(function() {
+    var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
+    $scope.list = $firebaseArray(ref);
+  });
+
   $scope.settings = {
     enableFriends: true
   };
@@ -245,6 +249,15 @@ angular.module('starter.controllers', [])
     $state.go("tab.home");
   }
 
+  $scope.clearFridge = function() {
+    for (var i = 0; i < $scope.list.length; i++) {
+      $scope.list.$remove($scope.list.indexOf($scope.list[i]));
+    }
+    $ionicLoading.show({ template: 'Fridge cleared!', noBackdrop: true, duration: 1000 });
+  };
+
+  $scope.clearRecipes = function() {
+    ionicLoading.show({ template: 'Fridge cleared!', noBackdrop: true, duration: 1000 });
+  };
+
 });
-
-
