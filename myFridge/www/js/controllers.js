@@ -85,8 +85,8 @@ angular.module('starter.controllers', [])
     $rootScope.sorting = $scope.sorting;
   };
 
-  $scope.diffName = function(query) {
 
+  $scope.diffName = function(query) {
 
     console.log(query);
 
@@ -122,7 +122,7 @@ angular.module('starter.controllers', [])
       console.log("added record with id " + id);
     });
 
-    $ionicLoading.show({ template: 'Item Added!', noBackdrop: true, duration: 1000 });
+    $ionicLoading.show({ template: 'Item Added!', noBackdrop: true, duration: 1000});
 
     $scope.itemInput.item = null;
     $scope.itemInput.expDate = null;
@@ -134,6 +134,18 @@ angular.module('starter.controllers', [])
 
     $ionicLoading.show({ template: 'Item Deleted!', noBackdrop: true, duration: 1000 });
   };
+
+  $scope.todaysDate = new Date("2017-04-26");
+
+  console.log($scope.todaysDate)
+
+  if ($scope.todaysDate === $scope.itemInput.expDate) {
+    console.log("expired!")
+  }
+
+  // if ($scope.todaysDate + 2 >= $scope.itemInput.expDate) {
+  //   console.log("soon!")
+  // }
 
 })
 
@@ -217,15 +229,10 @@ angular.module('starter.controllers', [])
     enableFriends: true
   };
 
-  $scope.cleanFridge = function() {
-    //function for deleting fridge contents
-
-  }
-
   $scope.goLogout = function() {
 
     var confirmPopup = $ionicPopup.confirm({
-      title: 'Are You Sure to Quit?'
+      title: 'Are You Sure You Want to Quit?'
     });
     confirmPopup.then(function(res) {
       if(res) {
@@ -257,7 +264,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.clearRecipes = function() {
-    ionicLoading.show({ template: 'Fridge cleared!', noBackdrop: true, duration: 1000 });
+    ionicLoading.show({ template: 'Recipes cleared!', noBackdrop: true, duration: 1000 });
   };
 
 });

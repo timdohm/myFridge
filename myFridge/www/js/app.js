@@ -142,7 +142,6 @@ myFridge.config(function($stateProvider, $urlRouterProvider) {
       controller: 'LoginCtrl',
       params: {
         completion: null,
-        a: 0
       }
     })
 
