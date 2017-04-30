@@ -22,8 +22,6 @@
     </form>
 
 
-
-
     <div class="bottom">
       <div style="float: left; width:100%;">
         <label class = "item item-input">
@@ -46,10 +44,10 @@
     <button class="button button-full" ng-click="onSubmit()">Submit</button>
     <ul>
 
-      <li class="button button-full" ng-repeat="groceryItem in list| orderObjectBy: sorting"
+      <li class="button button-full {{isColor}}" ng-repeat="groceryItem in list| orderObjectBy: sorting"
           ng-click="deleteItem(groceryItem)" >
-        Item: {{groceryItem.item}} <br> Expiration Date: {{groceryItem.expDate}}</li>
 
+        Item: {{groceryItem.item}} <br> Expiration Date: {{groceryItem.expDate}}</li>
 
     </ul>
 
