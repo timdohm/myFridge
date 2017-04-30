@@ -59,6 +59,8 @@ angular.module('starter.controllers', [])
 
   $scope.searchtext = "";
 
+  $scope.selection = "";
+
   $scope.itemInput = {
     item: "",
     expDate: ""
@@ -89,7 +91,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.resultArr = null;
-  $scope.diffName = function(query) {
+  $scope.callbackMethod = function(query) {
 
 
     console.log(query);
@@ -165,11 +167,9 @@ angular.module('starter.controllers', [])
 
 
 
-
-
   $scope.name = localStorage.getItem('user');
-  var today = new Date()
-  var curHr = today.getHours()
+  var today = new Date();
+  var curHr = today.getHours();
 
   $scope.curHr = curHr;
 
