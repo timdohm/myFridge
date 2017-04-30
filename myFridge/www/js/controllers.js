@@ -59,6 +59,8 @@ angular.module('starter.controllers', [])
 
   $scope.searchtext = "";
 
+  $scope.selection = "";
+
   $scope.itemInput = {
     item: "",
     expDate: ""
@@ -89,8 +91,8 @@ angular.module('starter.controllers', [])
   };
 
   $scope.resultArr = null;
-  $scope.diffName = function(query) {
 
+  $scope.diffName = function(query) {
 
     console.log(query);
 
@@ -127,7 +129,7 @@ angular.module('starter.controllers', [])
       console.log("added record with id " + id);
     });
 
-    $ionicLoading.show({ template: 'Item Added!', noBackdrop: true, duration: 1000 });
+    $ionicLoading.show({ template: 'Item Added!', noBackdrop: true, duration: 1000});
 
     $scope.itemInput.item = null;
     $scope.itemInput.expDate = null;
@@ -140,6 +142,30 @@ angular.module('starter.controllers', [])
     $ionicLoading.show({ template: 'Item Deleted!', noBackdrop: true, duration: 1000 });
   };
 
+  $scope.todaysDate = new Date();
+  $scope.dd = $scope.todaysDate.getDate();
+  $scope.mm = $scope.todaysDate.getMonth() + 1;
+  $scope.yyyy = $scope.todaysDate.getFullYear();
+
+  $scope.todaysDate.getDate();
+
+  if ($scope.dd < 10) {
+    $scope.dd = '0' + $scope.dd;
+  }
+  if ($scope.mm < 10) {
+    $scope.mm = '0' + $scope.mm;
+  }
+  $scope.todaysDate = $scope.yyyy + "-" + $scope.mm + "-" + $scope.dd;
+
+  console.log($scope.todaysDate)
+
+  $scope.isColor = "steelblue";
+  $scope.checkExp = function() {
+    if ($scope.todaysDate >= $scope.itemInput.expDate) {
+      console.log("expired!")
+      $scope.isColor = "assertive";
+    }
+  }
 })
 
 .controller('HomeCtrl', function($scope, $state, $rootScope, $ionicHistory, $firebaseAuth, firebase, ngFB, $ionicLoading) {
@@ -163,13 +189,9 @@ angular.module('starter.controllers', [])
   });
 
 
-
-
-
-
   $scope.name = localStorage.getItem('user');
-  var today = new Date()
-  var curHr = today.getHours()
+  var today = new Date();
+  var curHr = today.getHours();
 
   $scope.curHr = curHr;
 
@@ -244,15 +266,10 @@ angular.module('starter.controllers', [])
     enableFriends: true
   };
 
-  $scope.cleanFridge = function() {
-    //function for deleting fridge contents
-
-  }
-
   $scope.goLogout = function() {
 
     var confirmPopup = $ionicPopup.confirm({
-      title: 'Are You Sure to Quit?'
+      title: 'Are You Sure You Want to Quit?'
     });
     confirmPopup.then(function(res) {
       if(res) {
@@ -284,7 +301,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.clearRecipes = function() {
-    ionicLoading.show({ template: 'Fridge cleared!', noBackdrop: true, duration: 1000 });
+    ionicLoading.show({ template: 'Recipes cleared!', noBackdrop: true, duration: 1000 });
   };
 
 });
