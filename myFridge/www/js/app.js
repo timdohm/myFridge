@@ -44,7 +44,7 @@ myFridge.run(function($rootScope, $ionicHistory, $state, firebase, $firebaseAuth
         // `event` come from the Facebook SDK's auth.authResponseChange() callback
         auth_token
       );
-      $rootScope.startLogin()
+      $rootScope.startLogin();
 
       console.log(credential);
       auth.$signInWithCredential(credential).then(function(firebaseUser) {

@@ -1,8 +1,11 @@
 angular.module('starter.controllers', [])
 
   .controller('LoginCtrl', function ($scope, $ionicModal, $timeout, ngFB, $state, $rootScope, $stateParams) {
-    console.log($stateParams)
+    console.log($stateParams);
+
     $scope.fbLogin = function () {
+      console.log("fbstatus");
+      console.log(ngFB.getLoginStatus());
       var runningInCordova = false;
       document.addEventListener("deviceready", function () {
         var runningInCordova = true;
@@ -85,6 +88,7 @@ angular.module('starter.controllers', [])
     $rootScope.sorting = $scope.sorting;
   };
 
+  $scope.resultArr = null;
   $scope.diffName = function(query) {
 
 
@@ -95,8 +99,9 @@ angular.module('starter.controllers', [])
     result.then(function(success){
       //success case
       //getting context of response
-      console.log(success.getContext());
-      var result = success.getContext();
+      //console.log(success.getContext());
+      $scope.resultArr = success.body;
+      console.log($scope.resultArr);
     },function(err){
       //failure case
     });
@@ -137,7 +142,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('HomeCtrl', function($scope, $state, $rootScope, $ionicHistory, $firebaseAuth, firebase) {
+.controller('HomeCtrl', function($scope, $state, $rootScope, $ionicHistory, $firebaseAuth, firebase, ngFB, $ionicLoading) {
 
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
     $ionicHistory.clearCache();
@@ -148,6 +153,20 @@ angular.module('starter.controllers', [])
     location.reload();
   }*/
   //console.log(localStorage.getItem('user'));
+  var status = ngFB.getLoginStatus();
+  console.log(status);
+  status.then(function(result) {
+    if(result.status == "unknown") {
+      $ionicLoading.show({ template: 'Please login', noBackdrop: true, duration: 1000 });
+      $state.go('login');
+    }
+  });
+
+
+
+
+
+
   $scope.name = localStorage.getItem('user');
   var today = new Date()
   var curHr = today.getHours()
