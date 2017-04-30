@@ -211,9 +211,12 @@ angular.module('starter.controllers', [])
   };
   var listArray = [];
   for (var i = 0; i < $scope.list.length; i++) {
-    listArray.push($scope.list.indexOf($scope.list[i].item))
+    listArray.push($scope.list.indexOf($scope.list[i].groceryItem.item))
   }
-  console.log(listArray)
+  console.log(listArray);
+
+  //need to figure out the function to use from firebase and how to access that specific item
+  //i.e. when you add an item you get a roughly 15 digit reference ID
 })
 
 .controller('RecipeDispCtrl', function($scope, $state, $stateParams, $ionicModal, $ionicHistory, APIController, FindByIngredientsModel){
