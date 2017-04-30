@@ -87,7 +87,7 @@ angular.module('starter.controllers', [])
     }
     $rootScope.sorting = $scope.sorting;
   };
-  
+
   $scope.resultArr = null;
 
   $scope.diffName = function(query) {
@@ -140,18 +140,30 @@ angular.module('starter.controllers', [])
     $ionicLoading.show({ template: 'Item Deleted!', noBackdrop: true, duration: 1000 });
   };
 
-  $scope.todaysDate = new Date("2017-04-26");
+  $scope.todaysDate = new Date();
+  $scope.dd = $scope.todaysDate.getDate();
+  $scope.mm = $scope.todaysDate.getMonth() + 1;
+  $scope.yyyy = $scope.todaysDate.getFullYear();
+
+  $scope.todaysDate.getDate();
+
+  if ($scope.dd < 10) {
+    $scope.dd = '0' + $scope.dd;
+  }
+  if ($scope.mm < 10) {
+    $scope.mm = '0' + $scope.mm;
+  }
+  $scope.todaysDate = $scope.yyyy + "-" + $scope.mm + "-" + $scope.dd;
 
   console.log($scope.todaysDate)
 
-  if ($scope.todaysDate === $scope.itemInput.expDate) {
-    console.log("expired!")
+  $scope.isColor = "steelblue";
+  $scope.checkExp = function() {
+    if ($scope.todaysDate >= $scope.itemInput.expDate) {
+      console.log("expired!")
+      $scope.isColor = "red";
+    }
   }
-
-  // if ($scope.todaysDate + 2 >= $scope.itemInput.expDate) {
-  //   console.log("soon!")
-  // }
-
 })
 
 .controller('HomeCtrl', function($scope, $state, $rootScope, $ionicHistory, $firebaseAuth, firebase, ngFB, $ionicLoading) {
@@ -173,11 +185,6 @@ angular.module('starter.controllers', [])
       $state.go('login');
     }
   });
-
-
-
-
-
 
   $scope.name = localStorage.getItem('user');
   var today = new Date()

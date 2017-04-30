@@ -46,8 +46,11 @@
     <button class="button button-full" ng-click="onSubmit()">Submit</button>
     <ul>
 
-      <li class="button button-full" ng-repeat="groceryItem in list| orderObjectBy: sorting" ng-click="deleteItem(groceryItem)">
+      <li class="button button-full" ng-repeat="groceryItem in list| orderObjectBy: sorting"
+          ng-click="deleteItem(groceryItem)" >
         Item: {{groceryItem.item}} <br> Expiration Date: {{groceryItem.expDate}}</li>
+
+
     </ul>
 
   </ion-content>
