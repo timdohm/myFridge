@@ -16,10 +16,10 @@
       </div>
     </div>
 
-    <form method="get" action="/search" id="search">
-      <input name="q" type="text" size="40" placeholder="Search..." ng-change="diffName($parent.searchtext)"
-             ng-model="$parent.searchtext" ng-controller="DashCtrl" />
-    </form>
+    <!--<form method="get" action="/search" id="search">-->
+      <!--<input name="q" type="text" size="40" placeholder="Search..." ng-change="diffName($parent.searchtext)"-->
+             <!--ng-model="$parent.searchtext" ng-controller="DashCtrl" />-->
+    <!--</form>-->
 
 
     <div class="bottom">
@@ -44,9 +44,9 @@
     <button class="button button-full" ng-click="onSubmit()">Submit</button>
     <ul>
 
-      <li class="button button-full {{isColor}}" ng-repeat="groceryItem in list| orderObjectBy: sorting"
-          ng-click="deleteItem(groceryItem)" >
 
+      <li class="button button-full {{groceryItem.color}}" ng-repeat="groceryItem in list| orderObjectBy: sorting"
+          ng-click="deleteItem(groceryItem)" >
         Item: {{groceryItem.item}} <br> Expiration Date: {{groceryItem.expDate}}</li>
 
     </ul>

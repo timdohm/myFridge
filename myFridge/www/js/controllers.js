@@ -54,9 +54,15 @@ angular.module('starter.controllers', [])
   $rootScope.runWhenLoggedIn(function() {
     var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
     $scope.list = $firebaseArray(ref);
-  })
 
   $scope.searchtext = "";
+    $scope.list.$loaded()
+      .then(function () {
+
+    $scope.testFunc();
+
+    $scope.testFunc();
+  });
 
   $scope.itemInput = {
     item: "",
@@ -120,10 +126,15 @@ angular.module('starter.controllers', [])
     $scope.list.$add({
       item: groceryItem.item,
       expDate: groceryItem.expDate,
-      uid: $rootScope.currentUser.uid
-    }).then(function(ref) {
+      uid: $rootScope.currentUser.uid,
+      color: ""
+
+    })
+
+      .then(function(ref) {
       var id = ref.key;
       console.log("added record with id " + id);
+      console.log($scope.list.$indexFor(id));
     });
 
     $ionicLoading.show({ template: 'Item Added!', noBackdrop: true, duration: 1000});
@@ -154,13 +165,17 @@ angular.module('starter.controllers', [])
   }
   $scope.todaysDate = $scope.yyyy + "-" + $scope.mm + "-" + $scope.dd;
 
-  console.log($scope.todaysDate)
+  console.log($scope.todaysDate);
 
-  $scope.isColor = "steelblue";
-  $scope.checkExp = function() {
-    if ($scope.todaysDate >= $scope.itemInput.expDate) {
-      console.log("expired!")
-      $scope.isColor = "assertive";
+  $scope.testFunc = function() {
+
+    for(var i = 0; i< $scope.list.length; i++) {
+
+      if($scope.list[i].expDate < $scope.todaysDate) {
+       console.log("expired!");
+       $scope.list[i].color = "assertive";
+       $scope.list.$save(i);
+      }
     }
   }
 })
@@ -168,8 +183,9 @@ angular.module('starter.controllers', [])
 .controller('HomeCtrl', function($scope, $state, $rootScope, $ionicHistory, $firebaseAuth, firebase, ngFB, $ionicLoading) {
 
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    /*
     $ionicHistory.clearCache();
-    $ionicHistory.clearHistory();
+    $ionicHistory.clearHistory();*/
   });
   /*
   if(localStorage.getItem('user') == null) {
@@ -186,8 +202,8 @@ angular.module('starter.controllers', [])
   });
 
   $scope.name = localStorage.getItem('user');
-  var today = new Date()
-  var curHr = today.getHours()
+  var today = new Date();
+  var curHr = today.getHours();
 
   $scope.curHr = curHr;
 
@@ -220,14 +236,18 @@ angular.module('starter.controllers', [])
   $rootScope.runWhenLoggedIn(function() {
     var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
     $scope.list = $firebaseArray(ref);
+    $scope.list.$loaded().then(function () {
+
+      $scope.ingredients = [];
+
+      console.log($scope.ingredients);
+    });
   });
 
   $scope.goRecipe = function(recipe) {
     $ionicViewSwitcher.nextDirection('forward');
     $state.go('recipeDisp', {recipe: recipe});
-
   };
-
 })
 
 .controller('RecipeDispCtrl', function($scope, $rootScope, firebase, $firebaseArray, $state, ngFB, $state, $stateParams, $ionicModal, $ionicHistory, APIController, FindByIngredientsModel){
@@ -249,9 +269,8 @@ angular.module('starter.controllers', [])
   },function(err){
     //failure case
   });
-
-
 })
+
 .controller('AccountCtrl', function($scope, $rootScope, firebase, $firebaseArray, $ionicLoading, ngFB, $state, $ionicHistory, $ionicPopup, $ionicModal) {
   $rootScope.runWhenLoggedIn(function() {
     var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
@@ -290,6 +309,7 @@ angular.module('starter.controllers', [])
   }
 
   $scope.clearFridge = function() {
+    console.log($scope.list.length);
     for (var i = 0; i < $scope.list.length; i++) {
       $scope.list.$remove($scope.list.indexOf($scope.list[i]));
     }

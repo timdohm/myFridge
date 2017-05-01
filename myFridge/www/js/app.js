@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var myFridge = angular.module('myFridge', ['ionic', 'starter.controllers', 'starter.services', 'ngOpenFB', 'SpoonacularAPILib', 'firebase', 'ngOrderObjectBy'])
+var myFridge = angular.module('myFridge', ['ionic', 'starter.controllers', 'starter.services', 'ngOpenFB', 'SpoonacularAPILib', 'firebase', 'ngOrderObjectBy', 'ion-autocomplete'])
 
 .run(function($ionicPlatform, ngFB) {
   ngFB.init({appId: '1862623484011160'});
@@ -48,8 +48,8 @@ myFridge.run(function($rootScope, $ionicHistory, $state, firebase, $firebaseAuth
 
       console.log(credential);
       auth.$signInWithCredential(credential).then(function(firebaseUser) {
-        $rootScope.currentUser = firebaseUser
-        $rootScope.loginFinished()
+        $rootScope.currentUser = firebaseUser;
+        $rootScope.loginFinished();
         console.log("Signed in as:", firebaseUser.uid);
       }).catch(function(error) {
         console.error("Authentication failed:", error);
