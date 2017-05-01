@@ -1,26 +1,20 @@
 <ion-view id="title" view-title="myRecipes">
   <ion-content class="padding">
 
-        <!--<label ng-repeat="item in list">-->
-          <!--<input type="checkbox" checklist-model="item.item" checklist-value="item"> {{item.item}}-->
-        <!--</label>-->
-        <!--<br/>-->
+    <ion-toggle type="checkbox" ng-repeat="item in list" checklist-model="ingredients" checklist-value="item.item"
+                ng-change="addItem(item)" ng-model="item.checked"> {{ item.item }}
+    </ion-toggle>
 
-          <ion-toggle type="checkbox" ng-repeat="item in list" checklist-model="ingredients" checklist-value="item.item"
-          ng-change="addItem(item)" ng-model="item.checked">
-            {{ item.item }}
-          </ion-toggle>
-
-        <div class="item">
-          <pre ng-bind="item.item | json"></pre>
-        </div>
-<<<<<<< HEAD
-  <button class = "button button-full" ng-click = "submitRecipe()"> Search</button>
-=======
+    <div class="item">
+      <pre ng-bind="item.item | json"></pre>
+    </div>
 
     <button class="button button-full" ng-click="submitRecipe()">Search</button>
 
->>>>>>> b06194da45a46239dd16784efdbcc7b4d989458d
+    <!--Ng-repeat for recipe results needs to be completed-->
+    <div class="recipes">
+
+    </div>
 
   </ion-content>
 </ion-view>

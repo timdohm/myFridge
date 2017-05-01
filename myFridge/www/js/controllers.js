@@ -294,7 +294,7 @@ angular.module('starter.controllers', [])
     $ionicViewSwitcher.nextDirection('forward');
     $state.go('recipeDisp', {recipe: recipe});
   };
-<<<<<<< HEAD
+
   $scope.submitRecipe = function() {
     var ingredients = $scope.ingredients;
     var limitLicense = true;
@@ -304,7 +304,6 @@ angular.module('starter.controllers', [])
     // key-value map for optional query parameters
     var queryParameters = [];
 
-
     var result = APIController.findByIngredients(ingredients, limitLicense, number, ranking, queryParameters);
     //Function call returns a promise
     result.then(function(success){
@@ -313,12 +312,8 @@ angular.module('starter.controllers', [])
       console.log(success.getContext());
     },function(err){
       //failure case
+      console.log("error");
     });
-=======
-
-  $scope.submitRecipe = function() {
-
->>>>>>> b06194da45a46239dd16784efdbcc7b4d989458d
   }
 })
 
