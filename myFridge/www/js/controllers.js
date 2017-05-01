@@ -294,7 +294,28 @@ angular.module('starter.controllers', [])
     $ionicViewSwitcher.nextDirection('forward');
     $state.go('recipeDisp', {recipe: recipe});
   };
+  $scope.submitRecipe = function() {
+    var ingredients = $scope.ingredients;
+    var limitLicense = true;
+    var number = 131;
+    var ranking = 131;
+
+    // key-value map for optional query parameters
+    var queryParameters = [];
+
+
+    var result = APIController.findByIngredients(ingredients, limitLicense, number, ranking, queryParameters);
+    //Function call returns a promise
+    result.then(function(success){
+      //success case
+      //getting context of response
+      console.log(success.getContext());
+    },function(err){
+      //failure case
+    });
+  }
 })
+
 
 .controller('RecipeDispCtrl', function($scope, $rootScope, firebase, $firebaseArray, $state, ngFB, $state, $stateParams, $ionicModal, $ionicHistory, APIController, FindByIngredientsModel){
 
