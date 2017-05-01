@@ -14,6 +14,11 @@
     <!--Ng-repeat for recipe results needs to be completed-->
     <div class="recipes">
 
+      <ion-list>
+        <ion-item ng-repeat="recipe in results" class="item-icon-right" ng-click="goRecipe(recipe)">
+          {{recipe.title}} <br> <img ng-src="{{recipe.image}}" />
+        </ion-item>
+
     </div>
 
   </ion-content>

@@ -295,6 +295,7 @@ angular.module('starter.controllers', [])
     $state.go('recipeDisp', {recipe: recipe});
   };
 
+  $scope.results = null;
   $scope.submitRecipe = function() {
     var ingredients = $scope.ingredients;
     var limitLicense = true;
@@ -322,7 +323,8 @@ angular.module('starter.controllers', [])
     result.then(function(success){
       //success case
       //getting context of response
-      console.log(success.getContext());
+      console.log(success.getContext().response.body);
+      $scope.results = success.getContext().response.body;
     },function(err){
       //failure case
       console.log("error");
@@ -332,21 +334,29 @@ angular.module('starter.controllers', [])
 
 
 .controller('RecipeDispCtrl', function($scope, $rootScope, firebase, $firebaseArray, $state, ngFB, $state, $stateParams, $ionicModal, $ionicHistory, APIController, FindByIngredientsModel){
-
+/*
   $rootScope.runWhenLoggedIn(function() {
     var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
     $scope.list = $firebaseArray(ref);
-  });
+  });*/
+
 
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
     viewData.enableBack = true;
   });
-  $scope.recipe = APIController.getRecipeInformation($stateParams.recipe);
+
+  $scope.recipe = null;
+  console.log("view recipe detail");
+  console.log($stateParams.recipe);
+  var result = APIController.getRecipeInformation($stateParams.recipe.id);
 
   result.then(function(success){
     //success case
     //getting context of response
     console.log(success.getContext());
+    $scope.recipe = success.getContext().response.body;
+    $scope.needs = $scope.recipe.extendedIngredients;
+
   },function(err){
     //failure case
   });
