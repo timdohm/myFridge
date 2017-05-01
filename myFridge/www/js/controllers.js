@@ -199,6 +199,7 @@ angular.module('starter.controllers', [])
   console.log(status);
   status.then(function(result) {
     if(result.status == "unknown") {
+      localStorage.clear();
       $ionicLoading.show({ template: 'Please login', noBackdrop: true, duration: 1000 });
       $state.go('login');
     }
