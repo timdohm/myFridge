@@ -209,6 +209,9 @@ angular.module('starter.controllers', [])
 .controller('HomeCtrl', function($scope, $state, $rootScope, $ionicHistory, $firebaseAuth, firebase, ngFB, $ionicLoading) {
 
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    $scope.name = localStorage.getItem('user');
+    console.log("into home");
+    console.log($scope.name);
     /*
     $ionicHistory.clearCache();
     $ionicHistory.clearHistory();*/
@@ -228,7 +231,10 @@ angular.module('starter.controllers', [])
     }
   });
 
+  console.log("name");
+  console.log($scope.name);
   $scope.name = localStorage.getItem('user');
+  console.log($scope.name);
   var today = new Date();
   var curHr = today.getHours();
 
