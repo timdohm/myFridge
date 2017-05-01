@@ -93,7 +93,9 @@ form {
   color: steelblue;
   font-family: 'Indie Flower', cursive;
   font-size: 20px;
-  padding: 50px;
+  padding: 30px;
+  white-space: initial;
+  line-height: 30px;
 }
 
 img {
