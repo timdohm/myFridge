@@ -256,9 +256,10 @@ angular.module('starter.controllers', [])
 /*
   var listArray = [];
   for (var i = 0; i < $scope.list.length; i++) {
-    listArray.push($scope.list.indexOf($scope.list[i].item))
+    listArray.push($scope.list.indexOf($scope.list[i].groceryItem.item))
   }
   console.log(listArray)*/
+
 })
 
 .controller('RecipeDispCtrl', function($scope, $state, $stateParams, $ionicModal, $ionicHistory, APIController, FindByIngredientsModel){

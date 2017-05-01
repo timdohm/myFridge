@@ -1,5 +1,5 @@
 var app = angular.module("app", ["checklist-model"]);
-app.controller('Ctrl1', function($scope) {
+app.controller('RecipesCtrl', function($scope) {
   $scope.roles = [
     'guest',
     'user',
