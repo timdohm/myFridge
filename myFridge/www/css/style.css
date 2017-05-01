@@ -86,12 +86,19 @@ form {
   background-color: #ADD8E6;
 }
 
-/*@media (max-width: 500px) {*/
-  /*h2 {*/
-    /*position: absolute;*/
-    /*font-size: 20px;*/
-    /*text-align: center;*/
-    /*margin: -75px 100px 0 -120px;*/
-    /*line-height: 30px;*/
-  /*}*/
-/*}*/
+
+.recipe {
+  text-align: center;
+  background-color: #F0F8FF;
+  color: steelblue;
+  font-family: 'Indie Flower', cursive;
+  font-size: 20px;
+  padding: 50px;
+}
+
+img {
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+  position:relative;
+}
