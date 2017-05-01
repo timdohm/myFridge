@@ -294,6 +294,7 @@ angular.module('starter.controllers', [])
     $ionicViewSwitcher.nextDirection('forward');
     $state.go('recipeDisp', {recipe: recipe});
   };
+<<<<<<< HEAD
   $scope.submitRecipe = function() {
     var ingredients = $scope.ingredients;
     var limitLicense = true;
@@ -313,6 +314,11 @@ angular.module('starter.controllers', [])
     },function(err){
       //failure case
     });
+=======
+
+  $scope.submitRecipe = function() {
+
+>>>>>>> b06194da45a46239dd16784efdbcc7b4d989458d
   }
 })
 
@@ -336,6 +342,8 @@ angular.module('starter.controllers', [])
   },function(err){
     //failure case
   });
+
+
 })
 
 .controller('AccountCtrl', function($scope, $rootScope, firebase, $firebaseArray, $ionicLoading, ngFB, $state, $ionicHistory, $ionicPopup, $ionicModal) {
