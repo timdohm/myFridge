@@ -24,7 +24,7 @@ var myFridge = angular.module('myFridge', ['ionic', 'starter.controllers', 'star
   });
 })
 
-myFridge.run(function($rootScope, $ionicHistory, $state, firebase, $firebaseAuth, $ionicPlatform) {
+myFridge.run(function($rootScope, $ionicHistory, $state, firebase, $firebaseAuth, $ionicPlatform, ngFB) {
 
   var signIn = function() {
     var name = localStorage.getItem('user');
@@ -40,6 +40,8 @@ myFridge.run(function($rootScope, $ionicHistory, $state, firebase, $firebaseAuth
       });
     }
     else {
+
+      ngFB.getLoginStatus().then( function() {
       var credential = firebase.auth.FacebookAuthProvider.credential(
         // `event` come from the Facebook SDK's auth.authResponseChange() callback
         auth_token
@@ -54,9 +56,10 @@ myFridge.run(function($rootScope, $ionicHistory, $state, firebase, $firebaseAuth
       }).catch(function(error) {
         console.error("Authentication failed:", error);
         $rootScope.loginFailed()
-      });
+      });})
     }
   }
+
 
   $rootScope.loginCompletionHandlers = []
 
