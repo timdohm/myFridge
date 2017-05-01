@@ -298,9 +298,22 @@ angular.module('starter.controllers', [])
   $scope.submitRecipe = function() {
     var ingredients = $scope.ingredients;
     var limitLicense = true;
-    var number = 131;
-    var ranking = 131;
+    var number = 10;
+    var ranking = 10;
 
+    var holder = "";
+
+    for(var i = 0; i < ingredients.length; i++) {
+
+      if(i != ingredients.length -1)
+      holder += (ingredients[i] + ",");
+      else
+        holder += ingredients[i];
+    }
+    ingredients = holder;
+
+    console.log("ingredient search");
+    console.log(ingredients);
     // key-value map for optional query parameters
     var queryParameters = [];
 
