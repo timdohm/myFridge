@@ -244,6 +244,9 @@ angular.module('starter.controllers', [])
 
   var myIndex = 0;
   carousel();
+  ngFB.getLoginStatus().then( function() {
+    $scope.name = localStorage.getItem('user');
+  });
 
   function carousel() {
     var i;
