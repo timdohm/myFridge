@@ -45,33 +45,33 @@
     <ul>
 
 
-      <li class="button button-full {{isColor}}" ng-repeat="groceryItem in list| orderObjectBy: sorting"
+      <li class="button button-full {{groceryItem.color}}" ng-repeat="groceryItem in list| orderObjectBy: sorting"
           ng-click="deleteItem(groceryItem)" >
         Item: {{groceryItem.item}} <br> Expiration Date: {{groceryItem.expDate}}</li>
 
     </ul>
 
-    <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
-    <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
-    </head>
+    <!--<link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">-->
+    <!--<script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>-->
+    <!--</head>-->
 
-    <div id="app" ng-app="app">
-      <div ng-controller="Ctrl1">
+    <!--<div id="app" ng-app="app">-->
+      <!--<div ng-controller="Ctrl1">-->
 
-        <label ng-repeat="role in roles">
-          <input type="checkbox" checklist-model="user.roles" checklist-value="role"> {{role}}
-        </label>
+        <!--<label ng-repeat="role in roles">-->
+          <!--<input type="checkbox" checklist-model="user.roles" checklist-value="role"> {{role}}-->
+        <!--</label>-->
 
-          <ion-toggle type="checkbox" ng-repeat="role in roles" checklist-model="user.roles" checklist-value="role">
-            {{ item.text }}
-          </ion-toggle>
+          <!--<ion-toggle type="checkbox" ng-repeat="role in roles" checklist-model="user.roles" checklist-value="role">-->
+            <!--{{ item.text }}-->
+          <!--</ion-toggle>-->
 
-        <div class="item">
+        <!--<div class="item">-->
 
-          <pre ng-bind="user.roles | json"></pre>
-        </div>
-      </div>
-    </div>
+          <!--<pre ng-bind="user.roles | json"></pre>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
 
-  </ion-content>
-</ion-view>
+  <!--</ion-content>-->
+<!--</ion-view>-->

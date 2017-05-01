@@ -48,8 +48,8 @@ myFridge.run(function($rootScope, $ionicHistory, $state, firebase, $firebaseAuth
 
       console.log(credential);
       auth.$signInWithCredential(credential).then(function(firebaseUser) {
-        $rootScope.currentUser = firebaseUser
-        $rootScope.loginFinished()
+        $rootScope.currentUser = firebaseUser;
+        $rootScope.loginFinished();
         console.log("Signed in as:", firebaseUser.uid);
       }).catch(function(error) {
         console.error("Authentication failed:", error);
