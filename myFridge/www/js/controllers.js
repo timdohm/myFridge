@@ -55,15 +55,17 @@ angular.module('starter.controllers', [])
     var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
     $scope.list = $firebaseArray(ref);
 
-  $scope.searchtext = "";
+
+
     $scope.list.$loaded()
       .then(function () {
 
     $scope.testFunc();
-
-    $scope.testFunc();
+        
   });
 
+  });
+  $scope.searchtext = "";
   $scope.itemInput = {
     item: "",
     expDate: ""
@@ -307,7 +309,7 @@ angular.module('starter.controllers', [])
 
   $scope.goHome = function() {
     $state.go("tab.home");
-  }
+  };
 
   $scope.clearFridge = function() {
     console.log($scope.list.length);
@@ -320,5 +322,6 @@ angular.module('starter.controllers', [])
   $scope.clearRecipes = function() {
     ionicLoading.show({ template: 'Recipes cleared!', noBackdrop: true, duration: 1000 });
   };
+
 
 });
