@@ -3,12 +3,12 @@
     <h4>{{recipe.title}}</h4> <br>
     <img ng-src="{{recipe.image}}" />
 
-    <ion-list>
-      <ion-item ng-repeat="ingredient in needs" class="item-icon-right">
+    <ion-list class="ingredients">
+      <ion-item class="recipeList" ng-repeat="ingredient in needs" class="item-icon-right">
         {{ingredient.originalString}} <br>
       </ion-item>
 
     {{recipe.instructions}}
-
+    </ion-list>
   </ion-content>
 </ion-view>

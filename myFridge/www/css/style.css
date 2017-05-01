@@ -104,3 +104,26 @@ img {
   padding: 10px;
   position:relative;
 }
+
+.recipeList {
+  text-align: center;
+  background-color: #F0F8FF;
+  color: steelblue;
+  font-family: 'Indie Flower', cursive;
+  font-size: 20px;
+  padding: 10px;
+  white-space: initial;
+  line-height: 30px;
+}
+
+.ingredients {
+  font-family: 'Indie Flower', cursive;
+  font-size: 20px;
+  color: steelblue;
+  text-align: center;
+  list-style-position: inside;
+  clear: right;
+  display: inline;
+  list-style: none;
+
+}
