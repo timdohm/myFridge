@@ -294,7 +294,12 @@ angular.module('starter.controllers', [])
     $ionicViewSwitcher.nextDirection('forward');
     $state.go('recipeDisp', {recipe: recipe});
   };
+
+  $scope.submitRecipe = function() {
+
+  }
 })
+
 
 .controller('RecipeDispCtrl', function($scope, $rootScope, firebase, $firebaseArray, $state, ngFB, $state, $stateParams, $ionicModal, $ionicHistory, APIController, FindByIngredientsModel){
 
@@ -315,6 +320,8 @@ angular.module('starter.controllers', [])
   },function(err){
     //failure case
   });
+
+
 })
 
 .controller('AccountCtrl', function($scope, $rootScope, firebase, $firebaseArray, $ionicLoading, ngFB, $state, $ionicHistory, $ionicPopup, $ionicModal) {
