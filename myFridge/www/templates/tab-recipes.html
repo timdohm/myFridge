@@ -8,7 +8,8 @@
 
 
 
-          <ion-toggle type="checkbox" ng-repeat="item in list" checklist-model="ingredients" checklist-value="item.item">
+          <ion-toggle type="checkbox" ng-repeat="item in list" checklist-model="ingredients" checklist-value="item.item"
+          ng-change="addItem(item)" ng-model="item.checked">
             {{ item.item }}
           </ion-toggle>
 

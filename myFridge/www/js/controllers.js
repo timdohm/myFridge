@@ -61,10 +61,24 @@ angular.module('starter.controllers', [])
       .then(function () {
 
     $scope.testFunc();
-        
+
   });
 
   });
+
+
+  $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    if($scope.list != null) {
+      $scope.list.$loaded()
+        .then(function () {
+
+          $scope.testFunc();
+
+        });
+    }
+  });
+
+
   $scope.searchtext = "";
   $scope.itemInput = {
     item: "",
@@ -143,6 +157,16 @@ angular.module('starter.controllers', [])
 
     $scope.itemInput.item = null;
     $scope.itemInput.expDate = null;
+
+    if($scope.list != null) {
+      $scope.list.$loaded()
+        .then(function () {
+
+          $scope.testFunc();
+
+        });
+    }
+
   };
 
   $scope.deleteItem = function(groceryItem) {
@@ -246,6 +270,25 @@ angular.module('starter.controllers', [])
       console.log($scope.ingredients);
     });
   });
+
+  $scope.addItem = function(item) {
+
+    console.log(item);
+
+    console.log(item.checked);
+
+    if(item.checked) {
+      $scope.ingredients.push(item.item);
+    }
+    else {
+      var index = $scope.ingredients.indexOf(item.item);
+      $scope.ingredients.splice(index, 1);
+     // console.log($scope.ingredients);
+    }
+
+    console.log($scope.ingredients);
+
+  };
 
   $scope.goRecipe = function(recipe) {
     $ionicViewSwitcher.nextDirection('forward');
