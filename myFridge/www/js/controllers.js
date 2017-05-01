@@ -56,7 +56,6 @@ angular.module('starter.controllers', [])
     $scope.list = $firebaseArray(ref);
   })
 
-
   $scope.searchtext = "";
 
   $scope.itemInput = {
@@ -228,14 +227,16 @@ angular.module('starter.controllers', [])
     $state.go('recipeDisp', {recipe: recipe});
 
   };
-  var listArray = [];
-  for (var i = 0; i < $scope.list.length; i++) {
-    listArray.push($scope.list.indexOf($scope.list[i].item))
-  }
-  console.log(listArray)
+
 })
 
-.controller('RecipeDispCtrl', function($scope, $state, $stateParams, $ionicModal, $ionicHistory, APIController, FindByIngredientsModel){
+.controller('RecipeDispCtrl', function($scope, $rootScope, firebase, $firebaseArray, $state, ngFB, $state, $stateParams, $ionicModal, $ionicHistory, APIController, FindByIngredientsModel){
+
+  $rootScope.runWhenLoggedIn(function() {
+    var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
+    $scope.list = $firebaseArray(ref);
+  });
+
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
     viewData.enableBack = true;
   });
@@ -248,6 +249,7 @@ angular.module('starter.controllers', [])
   },function(err){
     //failure case
   });
+
 
 })
 .controller('AccountCtrl', function($scope, $rootScope, firebase, $firebaseArray, $ionicLoading, ngFB, $state, $ionicHistory, $ionicPopup, $ionicModal) {
