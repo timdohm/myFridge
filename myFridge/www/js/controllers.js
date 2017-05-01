@@ -55,12 +55,11 @@ angular.module('starter.controllers', [])
     var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
     $scope.list = $firebaseArray(ref);
 
+  $scope.searchtext = "";
     $scope.list.$loaded()
       .then(function () {
 
     $scope.testFunc();
-
-      });
 
     $scope.testFunc();
   });
@@ -177,9 +176,7 @@ angular.module('starter.controllers', [])
        $scope.list[i].color = "assertive";
        $scope.list.$save(i);
       }
-
     }
-
   }
 })
 
@@ -204,7 +201,6 @@ angular.module('starter.controllers', [])
       $state.go('login');
     }
   });
-
 
   $scope.name = localStorage.getItem('user');
   var today = new Date();
@@ -252,18 +248,16 @@ angular.module('starter.controllers', [])
   $scope.goRecipe = function(recipe) {
     $ionicViewSwitcher.nextDirection('forward');
     $state.go('recipeDisp', {recipe: recipe});
-
   };
-/*
-  var listArray = [];
-  for (var i = 0; i < $scope.list.length; i++) {
-    listArray.push($scope.list.indexOf($scope.list[i].groceryItem.item))
-  }
-  console.log(listArray)*/
-
 })
 
-.controller('RecipeDispCtrl', function($scope, $state, $stateParams, $ionicModal, $ionicHistory, APIController, FindByIngredientsModel){
+.controller('RecipeDispCtrl', function($scope, $rootScope, firebase, $firebaseArray, $state, ngFB, $state, $stateParams, $ionicModal, $ionicHistory, APIController, FindByIngredientsModel){
+
+  $rootScope.runWhenLoggedIn(function() {
+    var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
+    $scope.list = $firebaseArray(ref);
+  });
+
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
     viewData.enableBack = true;
   });
@@ -276,8 +270,8 @@ angular.module('starter.controllers', [])
   },function(err){
     //failure case
   });
-
 })
+
 .controller('AccountCtrl', function($scope, $rootScope, firebase, $firebaseArray, $ionicLoading, ngFB, $state, $ionicHistory, $ionicPopup, $ionicModal) {
   $rootScope.runWhenLoggedIn(function() {
     var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
