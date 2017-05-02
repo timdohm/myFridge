@@ -1,0 +1,10 @@
+<ion-view id="title" view-title="My Favorite Recipes">
+  <ion-content class="padding">
+
+  <ion-list>
+    <ion-item class="recipe" ng-repeat="detail in recipeList" class="item-icon-right" ng-click="goDetail(detail)">
+      {{detail.title}} <br> <img ng-src="{{detail.image}}" />
+    </ion-item>
+  </ion-list>
+  </ion-content>
+</ion-view>

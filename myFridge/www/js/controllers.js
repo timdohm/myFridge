@@ -304,6 +304,11 @@ angular.module('starter.controllers', [])
     $state.go('recipeDisp', {recipe: recipe});
   };
 
+  $scope.goFavs = function() {
+   // $ionicViewSwitcher.nextDirection('forward');
+    $state.go('favorites');
+  };
+
   $scope.results = null;
   $scope.submitRecipe = function() {
     var ingredients = $scope.ingredients;
@@ -341,14 +346,80 @@ angular.module('starter.controllers', [])
   }
 })
 
+  .controller('FavoritesCtrl', function ($scope, $rootScope, $ionicViewSwitcher, firebase, $firebaseArray, ngFB, $state, $stateParams, $ionicModal, $ionicHistory, APIController, FindByIngredientsModel) {
 
-.controller('RecipeDispCtrl', function($scope, $rootScope, firebase, $firebaseArray, $state, ngFB, $state, $stateParams, $ionicModal, $ionicHistory, APIController, FindByIngredientsModel){
-/*
+    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+      viewData.enableBack = true;
+    });
+    $scope.recipeList = [];
+
+
+    $rootScope.runWhenLoggedIn(function() {
+      var ref = firebase.database().ref('/recipes').orderByChild("uid").equalTo($rootScope.currentUser.uid);
+      $scope.recipes = $firebaseArray(ref);
+
+      $scope.recipes.$loaded()
+        .then(function () {
+
+          console.log($scope.recipes);
+          console.log($scope.recipes.length);
+
+          for(var i = 0; i < $scope.recipes.length; i++) {
+
+            var result = APIController.getRecipeInformation($scope.recipes[i].recipe_id);
+
+            result.then(function (success) {
+              //success case
+              //getting context of response
+              //console.log(success.getContext());
+              $scope.curr_recipe = success.getContext().response.body;
+
+              console.log("success");
+              //console.log(success);
+              console.log(success.getContext().response.body);
+
+              $scope.recipeList.push($scope.curr_recipe);
+              //console.log($scope.curr_recipe);
+              console.log($scope.recipeList);
+
+
+            }, function (err) {
+              //failure case
+            });
+          }
+
+
+        });
+
+    });
+
+
+
+    $scope.goDetail = function(recipe) {
+      $ionicViewSwitcher.nextDirection('forward');
+      $state.go('recipeDisp', {recipe: recipe});
+    };
+
+  })
+
+
+.controller('RecipeDispCtrl', function($scope, $rootScope, firebase, $firebaseArray, $state, ngFB, $state, $stateParams, $ionicModal, $ionicHistory, APIController, FindByIngredientsModel, $ionicLoading){
+
+  console.log("before");
   $rootScope.runWhenLoggedIn(function() {
-    var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
-    $scope.list = $firebaseArray(ref);
-  });*/
+    var ref = firebase.database().ref('/recipes').orderByChild("uid").equalTo($rootScope.currentUser.uid);
+    $scope.recipes = $firebaseArray(ref);
 
+    $scope.recipes.$loaded()
+      .then(function () {
+
+        console.log($scope.recipes);
+
+
+      });
+
+  });
+console.log("after");
 
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
     viewData.enableBack = true;
@@ -374,9 +445,28 @@ angular.module('starter.controllers', [])
     //failure case
   });
 
-  function htmlEntities(str) {
-    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  };
+$scope.addFav = function() {
+
+
+  $scope.recipes.$add({
+    recipe_id: $stateParams.recipe.id,
+    uid: $rootScope.currentUser.uid,
+
+  })
+
+    .then(function(ref) {
+      var id = ref.key;
+      console.log("added record with id " + id);
+      console.log($scope.recipes.$indexFor(id));
+    });
+
+
+
+
+  $ionicLoading.show({ template: 'Added to Favorites!', noBackdrop: true, duration: 1000 });
+
+
+};
 
 
 })
@@ -385,6 +475,11 @@ angular.module('starter.controllers', [])
   $rootScope.runWhenLoggedIn(function() {
     var ref = firebase.database().ref('/items').orderByChild("uid").equalTo($rootScope.currentUser.uid);
     $scope.list = $firebaseArray(ref);
+  });
+
+  $rootScope.runWhenLoggedIn(function() {
+    var ref = firebase.database().ref('/recipes').orderByChild("uid").equalTo($rootScope.currentUser.uid);
+    $scope.recipes = $firebaseArray(ref);
   });
 
   $scope.settings = {
@@ -427,8 +522,14 @@ angular.module('starter.controllers', [])
   };
 
   $scope.clearRecipes = function() {
-    ionicLoading.show({ template: 'Recipes cleared!', noBackdrop: true, duration: 1000 });
+    console.log($scope.recipes.length);
+    for (var i = 0; i < $scope.recipes.length; i++) {
+      $scope.recipes.$remove($scope.recipes.indexOf($scope.recipes[i]));
+    }
+
+    $ionicLoading.show({ template: 'Recipes cleared!', noBackdrop: true, duration: 1000 });
   };
+
 
 
 });
