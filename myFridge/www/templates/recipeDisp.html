@@ -8,7 +8,10 @@
         {{ingredient.originalString}} <br>
       </ion-item>
 
-    {{recipe.instructions}}
+
     </ion-list>
+    <p ng-bind-html="recipe.instructions"> </p>
+
   </ion-content>
 </ion-view>
+

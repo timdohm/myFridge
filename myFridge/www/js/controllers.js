@@ -365,10 +365,18 @@ angular.module('starter.controllers', [])
     console.log(success.getContext());
     $scope.recipe = success.getContext().response.body;
     $scope.needs = $scope.recipe.extendedIngredients;
+   // $scope.recipe.instructions = htmlEntities($scope.recipe.instructions);
+    console.log($scope.recipe.instructions);
+    //console.log(safestring);
+
 
   },function(err){
     //failure case
   });
+
+  function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  };
 
 
 })
