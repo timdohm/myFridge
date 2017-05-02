@@ -160,7 +160,8 @@ myFridge.config(function($stateProvider, $urlRouterProvider) {
     .state('recipeDisp', {
       url:'/recipeDisp',
       params: {
-        recipe: 'recipe'
+        recipe: 'recipe',
+        add: true
       },
       cache: false,
       templateUrl: 'templates/recipeDisp.html',

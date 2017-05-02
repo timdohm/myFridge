@@ -301,7 +301,7 @@ angular.module('starter.controllers', [])
 
   $scope.goRecipe = function(recipe) {
     $ionicViewSwitcher.nextDirection('forward');
-    $state.go('recipeDisp', {recipe: recipe});
+    $state.go('recipeDisp', {recipe: recipe, add: true});
   };
 
   $scope.goFavs = function() {
@@ -397,7 +397,7 @@ angular.module('starter.controllers', [])
 
     $scope.goDetail = function(recipe) {
       $ionicViewSwitcher.nextDirection('forward');
-      $state.go('recipeDisp', {recipe: recipe});
+      $state.go('recipeDisp', {recipe: recipe, add: false});
     };
 
   })
@@ -405,7 +405,6 @@ angular.module('starter.controllers', [])
 
 .controller('RecipeDispCtrl', function($scope, $rootScope, firebase, $firebaseArray, $state, ngFB, $state, $stateParams, $ionicModal, $ionicHistory, APIController, FindByIngredientsModel, $ionicLoading){
 
-  console.log("before");
   $rootScope.runWhenLoggedIn(function() {
     var ref = firebase.database().ref('/recipes').orderByChild("uid").equalTo($rootScope.currentUser.uid);
     $scope.recipes = $firebaseArray(ref);
@@ -415,15 +414,22 @@ angular.module('starter.controllers', [])
 
         console.log($scope.recipes);
 
-
       });
 
   });
-console.log("after");
+
 
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
     viewData.enableBack = true;
   });
+
+  if($stateParams.add) {
+    $scope.addfav = "Add to Favorites";
+  }
+  else {
+    $scope.addfav = "Remove from Favorites";
+  }
+
 
   $scope.recipe = null;
   console.log("view recipe detail");
@@ -447,28 +453,44 @@ console.log("after");
 
 $scope.addFav = function() {
 
+  if ($stateParams.add) {
+    $scope.recipes.$add({
+      recipe_id: $stateParams.recipe.id,
+      uid: $rootScope.currentUser.uid,
 
-  $scope.recipes.$add({
-    recipe_id: $stateParams.recipe.id,
-    uid: $rootScope.currentUser.uid,
+    })
 
-  })
+      .then(function (ref) {
+        var id = ref.key;
+        console.log("added record with id " + id);
+        console.log($scope.recipes.$indexFor(id));
+      });
 
-    .then(function(ref) {
-      var id = ref.key;
-      console.log("added record with id " + id);
-      console.log($scope.recipes.$indexFor(id));
+
+    $ionicLoading.show({template: 'Added to Favorites!', noBackdrop: true, duration: 1000});
+  }
+  else {
+
+    $scope.recipes.$loaded().then(function () {
+      console.log($scope.recipes.length);
+      var found = null;
+      for(var i = 0; i < $scope.recipes.length; i++) {
+        if($scope.recipes[i].recipe_id == $stateParams.recipe.id) {
+          found = i;
+        }
+      }
+
+      console.log($scope.recipes);
+      $scope.recipes.$remove($scope.recipes.indexOf($scope.recipes[found])).then( function () {
+      //$stateParams.recipe.id;
+      console.log($scope.recipes.length);
+
+      $ionicLoading.show({template: 'Removed From Favorites', noBackdrop: true, duration: 1000});
+      $state.go('favorites');
+      });
     });
-
-
-
-
-  $ionicLoading.show({ template: 'Added to Favorites!', noBackdrop: true, duration: 1000 });
-
-
+  }
 };
-
-
 })
 
 .controller('AccountCtrl', function($scope, $rootScope, firebase, $firebaseArray, $ionicLoading, ngFB, $state, $ionicHistory, $ionicPopup, $ionicModal) {
