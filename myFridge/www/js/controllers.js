@@ -138,6 +138,24 @@ angular.module('starter.controllers', [])
     groceryItem.item = $scope.itemInput.item;
     groceryItem.expDate = $scope.itemInput.expDate;
 
+    console.log("this should be null: " + groceryItem.expDate);
+
+    if(groceryItem.expDate == null || groceryItem.expDate == "") {
+      var date = new Date();
+
+      date = $scope.yyyy + "-" + $scope.mm + "-" + $scope.dd;
+      console.log("today: " + date);
+
+
+
+      //date.setMonth(date.getMonth() + 1);
+
+      groceryItem.expDate = date;
+      console.log("appended: " + date);
+
+    }
+
+
     // $scope.listOfGroceries[groceryItem.id] = groceryItem;
     $scope.list.$add({
       item: groceryItem.item,
