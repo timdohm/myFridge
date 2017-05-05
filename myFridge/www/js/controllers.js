@@ -230,6 +230,7 @@ angular.module('starter.controllers', [])
     $scope.name = localStorage.getItem('user');
     console.log("into home");
     console.log($scope.name);
+    $scope.lunch();
     /*
     $ionicHistory.clearCache();
     $ionicHistory.clearHistory();*/
@@ -253,19 +254,24 @@ angular.module('starter.controllers', [])
   console.log($scope.name);
   $scope.name = localStorage.getItem('user');
   console.log($scope.name);
-  var today = new Date();
-  var curHr = today.getHours();
 
-  $scope.curHr = curHr;
 
-  if (curHr < 12) {
-    $scope.curHr = 'breakfast!';
-  } else if (curHr < 18) {
-    $scope.curHr = 'lunch!';
-  } else {
-    $scope.curHr = 'dinner!';
-  }
+  $scope.lunch = function() {
 
+    var today = new Date();
+    var curHr = today.getHours();
+
+
+    $scope.curHr = curHr;
+
+    if (curHr < 12) {
+      $scope.curHr = 'breakfast!';
+    } else if (curHr < 18) {
+      $scope.curHr = 'lunch!';
+    } else {
+      $scope.curHr = 'dinner!';
+    }
+  };
   var myIndex = 0;
   carousel();
   ngFB.getLoginStatus().then( function() {

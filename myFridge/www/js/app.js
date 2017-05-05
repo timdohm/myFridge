@@ -31,9 +31,9 @@ myFridge.run(function($rootScope, $ionicHistory, $state, firebase, $firebaseAuth
     var auth_token = localStorage.getItem('fbAccessToken');
     var auth = $firebaseAuth();
 
-    console.log(auth_token)
+    console.log(auth_token);
 
-    if(auth_token == null ) {
+    if(auth_token == null) {
       console.log("going to state.go without completion")
       $state.go('login', {
 
@@ -103,8 +103,9 @@ myFridge.run(function($rootScope, $ionicHistory, $state, firebase, $firebaseAuth
   })
 })
 
-myFridge.config(function($stateProvider, $urlRouterProvider) {
+myFridge.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
+  $ionicConfigProvider.tabs.position('bottom');
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
